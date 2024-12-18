@@ -1,0 +1,42 @@
+---
+title: Diagrama de classes TapatApp
+---
+classDiagram
+    User "" --> "0..N" Child   
+    %% Tap "" --> "1..1" Staus
+    Child "" --> "1..1" Treatement
+    Child "" --> "0..N" Tap
+
+    class User{
+        -int id
+        +String userName
+        -String password
+        -String email
+        +informacióTractamentInfant(): void
+        +assignarRolAltreUser(): void
+        +iniciarSessio(): boolean
+    }
+
+    class Tap{
+        -int id
+        -int status
+        -datetime init 
+        -datetime end 
+    }
+
+    class Child{
+        -int id
+        +int sleep_average
+        +String child_name
+        +consultarTractament(): obj Tractament
+        +consultarTap
+
+    }
+    %% class Staus{
+    %%     -int id
+    %%     +String name
+    %% }
+    class Treatement{
+        -int id
+        +String name
+    }
