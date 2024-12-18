@@ -1,0 +1,9 @@
+flowchart TD
+    A[Cliente - Vista de login] -->|Envia datos user| B[Cliente - DAO]
+    B -->|Petición HTTP| C[Servidor - Webservice]
+    C -->|Valida datos user| D[Servidor - DAO Usuarios]
+    D -->|Consulta datos - Infant assignat| E[Base de Datos]
+    E -->|Responde datos| D
+    D -->|Devuelve datos  - Infant assignat| C
+    C -->|Respuesta HTTP| B
+    B -->|Datos procesados| F[Cliente - Vista de la informació de l'infant assignat]
