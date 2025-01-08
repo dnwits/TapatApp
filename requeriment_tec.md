@@ -8,6 +8,7 @@ El backend serà el cor del sistema, encarregat de gestionar dades, usuaris, i l
 - Sistema operatiu del servidor: Linux
 - APIs i serveis web: RESTFul i Flask
 ### b. Llenguatges de programació
+- Llenguatge de programació: Python(?)
 ### c. Seguretat
 - Autenticació i autorització: login (usuari i password) 
 - Xifratge de dades: token SHA512
