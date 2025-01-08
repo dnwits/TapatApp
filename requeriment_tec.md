@@ -11,29 +11,32 @@ El backend serà el cor del sistema, encarregat de gestionar dades, usuaris, i l
 ### c. Seguretat
 - Autenticació i autorització: login (usuari i password) 
 - Xifratge de dades: token SHA512
-- Còpies de seguretat automàtiques
+- Còpies de seguretat automàtiques: si, cada dia pero deixant a l'usuari decidir si es canvia els intervals de temps.
+
 ## 2. Frontend
 ### a. Tipus de Clients
 - Web, Mòbil i Esciptori.
-- Llenguatge de programació: Java(?)
+- Llenguatge de programació: Java, Python(?)
 - Compatibilitat dispositius: Android, iOS, Windows.
 
 ## 3. Requisits Generals
 ### a. Gestió d'usuari i autenticació
 - Rols d’usuari: administradors, cuidadors, pacients.
-- Base de dades
-- Seguretat
+- Base de dades: MariaDB
+- Seguretat: si
 
 ### b. Emmagatzematge local i sincronització
-- Dades que es guarden en local, són sensibles? si.
-- Seguretat
+- Dades que es guarden en local, són sensibles? si, noms, historia medica dels pacients
+- Seguretat: si
 
 ### c. Gestió d’accessibilitat
-- Nivells A, AA y AAA d’accessibilitat
+- Nivells A, AA y AAA d’accessibilitat: AA (si es pot AAA)
+
 ## 4. Requisits d'Infraestructura
-- Xarxa
-- Espai d’emmagatzematge al núvol
+- Xarxa i comunicació HTTPS
+- Espai d’emmagatzematge al núvol: Depen del hosting compartit (1GB)
 - APIs de tercers
+
 ## 5. Requisits del Procés de Desenvolupament
 - IDE’s (Apache)
 - Control de Versions: Git
