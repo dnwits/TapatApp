@@ -16,7 +16,7 @@ El backend serà el cor del sistema, encarregat de gestionar dades, usuaris, i l
 
 ## 2. Frontend
 ### a. Tipus de Clients
-- Web, Mòbil i Esciptori.
+- Web i Mòbil
 - Llenguatge de programació: Java, Python(?)
 - Compatibilitat dispositius: Android, iOS, Windows.
 
