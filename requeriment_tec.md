@@ -9,23 +9,23 @@ El backend serà el cor del sistema, encarregat de gestionar dades, usuaris, i l
 - APIs i serveis web: RESTFul i Flask
 ### b. Llenguatges de programació
 ### c. Seguretat
-- Autenticació i autorització
-- Xifratge de dades
+- Autenticació i autorització: login (usuari i password) 
+- Xifratge de dades: token SHA512
 - Còpies de seguretat automàtiques
 ## 2. Frontend
 ### a. Tipus de Clients
-- Web, Mòbil, Esciptori ….
-- Llenguatge de programació:
-- Compatibilitat dispositius
+- Web, Mòbil i Esciptori.
+- Llenguatge de programació: Java(?)
+- Compatibilitat dispositius: Android, iOS, Windows.
 
 ## 3. Requisits Generals
 ### a. Gestió d'usuari i autenticació
-- Rols d’usuari
+- Rols d’usuari: administradors, cuidadors, pacients.
 - Base de dades
 - Seguretat
 
 ### b. Emmagatzematge local i sincronització
-- Dades que es guarden en local, són sensibles?
+- Dades que es guarden en local, són sensibles? si.
 - Seguretat
 
 ### c. Gestió d’accessibilitat
