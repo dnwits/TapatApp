@@ -22,4 +22,5 @@ L'objectiu de TapatApp és proporcionar a totes les famílies afectades per cata
 - Desenvolupar el backend de l'aplicació amb serveis web.
 - Desenvolupar el frontend de l'aplicació mòbil.
 - Possibilitat de crear una web quan l'aplicació estigui en producció.
+
 [Requeriments tècnics](requeriment_tec.md)
