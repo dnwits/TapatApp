@@ -24,22 +24,24 @@ El backend serà el cor del sistema, encarregat de gestionar dades, usuaris, i l
 ### a. Gestió d'usuari i autenticació
 - Rols d’usuari: administradors, cuidadors, pacients.
 - Base de dades: MariaDB
-- Seguretat: si
+- Seguretat: Password en Md5 en BBDD
+- Autenticació: login usuari o mail i contrasenya, per Token
 
 ### b. Emmagatzematge local i sincronització
 - Dades que es guarden en local, són sensibles? si, noms, historia medica dels pacients
-- Seguretat: si
+- Seguretat: HTTPS, validació per token
 
 ### c. Gestió d’accessibilitat
 - Nivells A, AA y AAA d’accessibilitat: AA (si es pot AAA)
 
 ## 4. Requisits d'Infraestructura
-- Xarxa i comunicació HTTPS
-- Espai d’emmagatzematge al núvol: Depen del hosting compartit (1GB)
-- APIs de tercers
+- Xarxa i comunicació HTTPS (xarxa)
+- Espai d’emmagatzematge al núvol: Depen del hosting compartit (1Tb)
+- APIs de tercers: no
 
 ## 5. Requisits del Procés de Desenvolupament
-- IDE’s (Apache)
-- Control de Versions: Git
+- IDE’s: VScode , Miniconda3 (python)
+- Extensions VSCode: python, python snippets
+- Control de Versions: Git, GitHub
 - Mètode de desenvolupament: Seguir una metodologia àgil com Scrum per iterar i validar funcionalitats amb usuaris reals.
-- Proves de qualitat (QA): Tests
+- Proves de qualitat (QA): Tests de proves Unitàries
