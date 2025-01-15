@@ -1,3 +1,4 @@
+from flask import Flask, request, jsonify
 class User:
     def __init__(self, id, username, password, email):
         self.id=id
@@ -15,8 +16,8 @@ listUsers=[
     User(4, "usuari4", "meow4", "user4@xtec.cat")
 ]
 
-for u in listUsers:
-    print(u)
+# for u in listUsers:
+#     print(u)
 
 class DAOUsers:
     def __init__(self):
@@ -25,7 +26,7 @@ class DAOUsers:
     def getUserByUsername(self,username):
         for u in self.users:
             if u.username == username:
-                print("\n"+str(u)+ " existeix :3")
+                # print("\n"+str(u)+ " existeix :3")
                 return u
         return None
         
@@ -38,8 +39,10 @@ u=daoUser.getUserByUsername("usuari1")
 # else:
 #     print("no trobat")
 app = Flask(__name__)
-@app.route('hello', methods=['GET'])
+
+@app.route('/hello', methods=['GET'])
 def hello():
-    return "Hello World :3"
-if __name__== '__main__':
-    app.run(debug=True) #,host="0.0.0.0",port="10100"
+    return "Hello World"
+
+if __name__ == '__main__':
+     app.run(debug=True,host="127.0.0.1",port="10050")
