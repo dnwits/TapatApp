@@ -3,7 +3,6 @@ title: Diagrama de classes TapatApp
 ---
 classDiagram
     User "" --> "0..N" Child   
-    %% Tap "" --> "1..1" Staus
     Child "" --> "1..1" Treatement
     Child "" --> "0..N" Tap
 
@@ -32,10 +31,7 @@ classDiagram
         +consultarTap
 
     }
-    %% class Staus{
-    %%     -int id
-    %%     +String name
-    %% }
+
     class Treatement{
         -int id
         +String name
