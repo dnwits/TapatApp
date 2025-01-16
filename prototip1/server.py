@@ -29,24 +29,39 @@ class DAOUsers:
                 # print("\n"+str(u)+ " existeix :3")
                 return u
         return None
-        
+    
+app = Flask(__name__)       
 daoUser= DAOUsers()
 
-u=daoUser.getUserByUsername("usuari1")
+#u=daoUser.getUserByUsername("usuari1")
 
 # if (u):
 #     print(str(u)+ "existeix :3")
 # else:
 #     print("no trobat")
-app = Flask(__name__)
+#app = Flask(__name__)
 
 @app.route('/hello', methods=['GET'])
 def hello():
     return "Hello World"
 
+# Nuevo endpoint para buscar usuarios por username
+@app.route('/user/<username>', methods=['GET'])
+def get_user(username):
+    user = daoUser.getUserByUsername(username)
+    if user:
+        # Devolvemos la información del usuario como JSON
+        return jsonify({
+            "id": user.id,
+            "username": user.username,
+            "email": user.email
+        }), 200  # Código 200: OK
+    else:
+        # Devolvemos un mensaje de error
+        return jsonify({"error": "Usuario no trobat..."}), 404  # Código 404: No encontrado
+
 if __name__ == '__main__':
      app.run(debug=True) #,host="0.0.0.0",port="10050"
-
 # @app.route('/proto1/getdata', methods=['GET'])
 # def getData():
 #     return 
