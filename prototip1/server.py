@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+# Definir la clase User con sus atributos
 class User:
     def __init__(self, id, username, password, email):
         self.id=id
@@ -9,6 +10,7 @@ class User:
     def __str__(self):
         return "ID: "+ str(self.id)+"\n"+"Usuari:" + self.username+"\n" +"Email: " + self.email
 
+# Crear lista de usuarios (id, username, pass y email)
 listUsers=[
     User(1, "usuari1", "12345", "user1@gmail.com"),
     User(2, "usuari2", "12345", "user2@gmail.com"),
@@ -19,6 +21,7 @@ listUsers=[
 # for u in listUsers:
 #     print(u)
 
+# Crear metodo para verificar si el usuario existe (buscando en la lista de users)
 class DAOUsers:
     def __init__(self):
         self.users=listUsers
@@ -30,6 +33,8 @@ class DAOUsers:
                 return u
         return None
     
+# declara que utilizaremos flask
+# variable que llama al metodo DAOUsers de antes
 app = Flask(__name__)       
 daoUser= DAOUsers()
 
@@ -41,9 +46,10 @@ daoUser= DAOUsers()
 #     print("no trobat")
 #app = Flask(__name__)
 
+# Test de 'Hello World'
 @app.route('/hello', methods=['GET'])
 def hello():
-    return "Hello World"
+    return "Hello World :3"
 
 # Nuevo endpoint para buscar usuarios por username
 @app.route('/user/<username>', methods=['GET'])
@@ -55,7 +61,7 @@ def get_user(username):
             "id": user.id,
             "username": user.username,
             "email": user.email
-        }), 200  # Código 200: OK
+        }), 200   #Código 200: OK
     else:
         # Devolvemos un mensaje de error
         return jsonify({"error": "Usuario no trobat..."}), 404  # Código 404: No encontrado
