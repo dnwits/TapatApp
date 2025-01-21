@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
-# Definir la clase User con sus atributos
+# Definir la clase User con sus atributos (en python solo se puede 1 constructor)
 class User:
-    def __init__(self, id, username, password, email):
+    def __init__(self, id, username, password, email=""): #email amb valor per defecte (vacio)
         self.id=id
         self.username=username
         self.password=password
@@ -18,14 +18,11 @@ listUsers=[
     User(4, "usuari4", "meow4", "user4@xtec.cat")
 ]
 
-# for u in listUsers:
-#     print(u)
-
-# Crear metodo para verificar si el usuario existe (buscando en la lista de users)
+# Crear objeto para verificar si el usuario existe (buscando en la lista de users)
 class DAOUsers:
     def __init__(self):
         self.users=listUsers
-
+    # Crear metodo que hace la busqueda
     def getUserByUsername(self,username):
         for u in self.users:
             if u.username == username:
@@ -39,12 +36,10 @@ app = Flask(__name__)
 daoUser= DAOUsers()
 
 #u=daoUser.getUserByUsername("usuari1")
-
 # if (u):
 #     print(str(u)+ "existeix :3")
 # else:
 #     print("no trobat")
-#app = Flask(__name__)
 
 # Test de 'Hello World'
 @app.route('/hello', methods=['GET'])
@@ -65,9 +60,20 @@ def get_user(username):
     else:
         # Devolvemos un mensaje de error
         return jsonify({"error": "Usuario no trobat..."}), 404  # Código 404: No encontrado
+    
+# CLASE 21/01/25 BIEN!!!!!!!!!!!!!!
+@app.route('/tapatapp/getuser', methods=['GET'])
+def getUser():
+    n = str(request.args.get('name'))
+    email = str(request.args.get('email'))
+    return "Hello :3            "+"Nom: "+n+", email: "+email
+
+@app.route('/prototip/getuser/<string:username>', methods=['GET'])
+def prototipGetUser(username):
+    return "Prototip 1: user >>>> "+username
 
 if __name__ == '__main__':
-     app.run(debug=True) #,host="0.0.0.0",port="10050"
+     app.run(debug=True,host="192.168.144.157",port="10050") #,host="0.0.0.0",port="10050"
 # @app.route('/proto1/getdata', methods=['GET'])
 # def getData():
 #     return 
