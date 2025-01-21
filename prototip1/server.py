@@ -47,7 +47,7 @@ def hello():
     return "Hello World :3"
 
 # Nuevo endpoint para buscar usuarios por username
-@app.route('/user/<username>', methods=['GET'])
+@app.route('/prototip/getuser/<username>', methods=['GET'])
 def get_user(username):
     user = daoUser.getUserByUsername(username)
     if user:
