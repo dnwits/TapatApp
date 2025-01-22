@@ -1,4 +1,3 @@
-[HTTP request i response](req_resp.md)
 # Descripció del projecte TapatApp
 Una cataracta congènita és l'opacitat del cristal·lí de l'ull present des del naixement. La incidència de cataracta congènita és d'aproximadament 3 de cada 10.000 nens al cap d'un any de vida. A l'Hospital de Sant Joan de Déu s'han operat al voltant de 100 cataractes infantils durant l'últim any. Les cataractes són la causa més freqüent de ceguesa tractable en la infància, i es calcula que hi ha al voltant de 200.000 nens cecs per cataractes arreu del món.
 
@@ -24,4 +23,25 @@ L'objectiu de TapatApp és proporcionar a totes les famílies afectades per cata
 - Desenvolupar el frontend de l'aplicació mòbil.
 - Possibilitat de crear una web quan l'aplicació estigui en producció.
 
+# Requeriments tècnics
 [Requeriments tècnics](requeriment_tec.md)
+
+# HTTP Request / Response
+[HTTP request i response](req_resp.md)
+
+# Definició dels EndPoints del WebService
+Definició dels EndPoints del Servei Web:
+
+Què necessitem per cada End-point
+
+- Descripció: saber si un usuari existeix al sistema
+- HOST: Domain port
+- End-point (URL): [/prototip/getuser/<username>]
+- Method: GET
+- Tipus de petició (headers):
+        Content-Type: application/json
+        Content-Length: 123
+        Date: Mon, 22 Jan 2025 14:00:00 GMT
+        Server: Apache/2.4.41 (Ubuntu)
+- Parametres que necessita la petició: (identifica els paràmetres i posa exemples en el cas de peticions GET) --> Username
+- Resposta: Si l'usuari existeix mostrarà la informació bàsica (username i email) en format json. Si l'username introduït no existeix mostrarà una resposta que indiqui això.
