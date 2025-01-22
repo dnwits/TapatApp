@@ -20,10 +20,11 @@ GET request:
 
 POST request:
 
-        POST /api/login HTTP/1.1
-        Host: www.example.com
-        Content-Type: application/json
-        Content-Length: 45
+
+    POST /api/login HTTP/1.1
+    Host: www.example.com
+    Content-Type: application/json
+    Content-Length: 45
 
     {
       "username": "usuari",
@@ -42,11 +43,11 @@ IMPORTANT : heu d’utilitzar la ruta del curl que heu instal·lat amb scoop. A 
 
 Executar una petició GET:
 
-<code>PS C:\Users\amallad2> C:\Users\amallad2\scoop\apps\curl\current\bin\curl https://proven.cat
+    PS C:\Users\amallad2> C:\Users\amallad2\scoop\apps\curl\current\bin\curl https://proven.cat
 
-PS> C:\Users\amallad2\scoop\apps\curl\current\bin\curl  https://api.chucknorris.io/jokes/categories
+    PS> C:\Users\amallad2\scoop\apps\curl\current\bin\curl  https://api.chucknorris.io/jokes/categories
 
-PS> C:\Users\amallad2\scoop\apps\curl\current\bin\curl  https://api.chucknorris.io/jokes/random?category=dev</code>
+    PS> C:\Users\amallad2\scoop\apps\curl\current\bin\curl  https://api.chucknorris.io/jokes/random?category=dev
 
 
 
