@@ -19,10 +19,11 @@ GET request:
 
 
 POST request:
-    POST /api/login HTTP/1.1
-    Host: www.example.com
-    Content-Type: application/json
-    Content-Length: 45
+
+        POST /api/login HTTP/1.1
+        Host: www.example.com
+        Content-Type: application/json
+        Content-Length: 45
 
     {
       "username": "usuari",
