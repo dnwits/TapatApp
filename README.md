@@ -35,8 +35,8 @@ Definició dels EndPoints del Servei Web:
 Què necessitem per cada End-point
 
 - Descripció: saber si un usuari existeix al sistema
-- HOST: Domain port
-- End-point (URL): [/prototip/getuser/<username>]
+- HOST: http://192.168.144.157:10050/
+- End-point (URL): /prototip/getuser/<username>
 - Method: GET
 - Tipus de petició (headers):
 
