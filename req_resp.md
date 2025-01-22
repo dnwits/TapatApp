@@ -20,14 +20,14 @@ GET request:
 
 POST request:
     POST /api/login HTTP/1.1
-Host: www.example.com
-Content-Type: application/json
-Content-Length: 45
+    Host: www.example.com
+    Content-Type: application/json
+    Content-Length: 45
 
-{
-  "username": "usuari",
-  "password": "1234"
-}   
+    {
+      "username": "usuari",
+      "password": "1234"
+    }   
 
 ### Com funciona un HTTP request en un entorn real?
 1. El client (navegador o aplicació) inicia una sol·licitud HTTP enviant-la a un servidor.
