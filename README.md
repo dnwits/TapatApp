@@ -39,9 +39,11 @@ Què necessitem per cada End-point
 - End-point (URL): [/prototip/getuser/<username>]
 - Method: GET
 - Tipus de petició (headers):
+
         Content-Type: application/json
         Content-Length: 123
         Date: Mon, 22 Jan 2025 14:00:00 GMT
         Server: Apache/2.4.41 (Ubuntu)
+        
 - Parametres que necessita la petició: (identifica els paràmetres i posa exemples en el cas de peticions GET) --> Username
 - Resposta: Si l'usuari existeix mostrarà la informació bàsica (username i email) en format json. Si l'username introduït no existeix mostrarà una resposta que indiqui això.
