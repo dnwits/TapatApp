@@ -53,12 +53,12 @@ Executar una petició GET:
 
 Desar la resposta en un fitxer:
 
-<code>PS C:\Users\amallad2> C:\Users\amallad2\scoop\apps\curl\current\bin\curl -o fitxer.html https://api.chucknorris.io/jokes/random?category=dev</code>
+    PS C:\Users\amallad2> C:\Users\amallad2\scoop\apps\curl\current\bin\curl -o fitxer.html https://api.chucknorris.io/jokes/random?category=dev
 
 
 Executar petició POST:  https://www.postman.com/postman/published-postman-templates/documentation/ae2ja6x/postman-echo?ctx=documentation
 
-<code>PS> C:\Users\amallad2\scoop\apps\curl\current\bin\curl -X POST -H "Content-Type: application/json"  -d "{'test': 'value'}" https://postman-echo.com/post</code>
+    PS> C:\Users\amallad2\scoop\apps\curl\current\bin\curl -X POST -H "Content-Type: application/json"  -d "{'test': 'value'}" https://postman-echo.com/post
 
 ## 1.3 Mime Types
 
@@ -68,68 +68,68 @@ Els MIME types (Multipurpose Internet Mail Extensions) són estàndards utilitza
 multipart/form-data és un tipus de MIME utilitzat principalment per enviar formularis HTML que contenen fitxers o dades binàries (per exemple, imatges, documents, etc.). Aquest tipus de codificació permet enviar diversos tipus de dades (com text i fitxers) en una sola petició HTTP. És el més utilitzat en formularis que permeten la càrrega de fitxers.
 
 Petició Http POST
-<code><form action="https://example.com/upload" method="POST" enctype="multipart/form-data">
-    <label for="name">Nom:</label>
-    <input type="text" id="name" name="name" value="Joan">
-    <br>
-    <label for="file">Selecciona una imatge:</label>
-    <input type="file" id="file" name="file">
-    <br>
-    <input type="submit" value="Enviar">
-</form>
-</code>
+    <form action="https://example.com/upload" method="POST" enctype="multipart/form-data">
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name" value="Joan">
+        <br>
+        <label for="file">Selecciona una imatge:</label>
+        <input type="file" id="file" name="file">
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+
 
 es genera una petició POST
 
-<code>POST /upload HTTP/1.1
-Host: example.com
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 5000
+    POST /upload HTTP/1.1
+    Host: example.com
+    Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+    Content-Length: 5000
 
 
-----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="name"
+    ----WebKitFormBoundary7MA4YWxkTrZu0gW
+    Content-Disposition: form-data; name="name"
 
 
-Joan
-----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="image.jpg"
-Content-Type: image/jpeg
+    Joan
+    ----WebKitFormBoundary7MA4YWxkTrZu0gW
+    Content-Disposition: form-data; name="file"; filename="image.jpg"
+    Content-Type: image/jpeg
 
 
-(binary data of the image)
-----WebKitFormBoundary7MA4YWxkTrZu0gW--
-</code>
+    (binary data of the image)
+    ----WebKitFormBoundary7MA4YWxkTrZu0gW--
+
 
 2. application/x-www-form-urlencoded
 application/x-www-form-urlencoded és el tipus de codificació per defecte utilitzat quan s’envien dades a través d’un formulari HTML utilitzant el mètode POST (o GET en alguns casos). Les dades s’envien com a una cadena de text amb parelles clau-valor, on les claus i els valors estan separats per = i cada parella es separa per &.
 
 Exemple petició Http  POST:
 
-<code>POST /submit HTTP/1.1
-Host: example.com
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 27
+    POST /submit HTTP/1.1
+    Host: example.com
+    Content-Type: application/x-www-form-urlencoded
+    Content-Length: 27
 
 
-username=John+Doe&age=30&city=New+York
-</code>
+    username=John+Doe&age=30&city=New+York
+
 
 3. application/json
 application/json és el tipus MIME utilitzat per enviar dades en format JSON. JSON (JavaScript Object Notation) és un format lleuger per emmagatzemar i transportar dades, àmpliament utilitzat en API RESTful i serveis web moderns. Aquest tipus s’utilitza per a la comunicació entre clients i servidors que requereixen enviar dades estructurades de forma més complexa, com objects o arrays.
 
-<code>POST /submit HTTP/1.1
-Host: example.com
-Content-Type: application/json
-Content-Length: 42
+    POST /submit HTTP/1.1
+    Host: example.com
+    Content-Type: application/json
+    Content-Length: 42
 
 
-{
-  "username": "John Doe",
-  "age": 30,
-  "city": "New York"
-}
-</code>
+    {
+      "username": "John Doe",
+      "age": 30,
+      "city": "New York"
+    }
+
 
 
 # 2. Http Response
@@ -145,7 +145,8 @@ Una resposta HTTP general es compon de tres parts principals:
 - El protocol de la resposta: Normalment HTTP/1.1 o HTTP/2.
 - El codi d'estat HTTP: Un número que indica l'estat de la petició (com 200, 404, 500, etc.).
 - La descripció de l'estat: Una breu explicació del codi d'estat (com "OK" o "Not Found").
-<code>HTTP/1.1 200 OK</code>
+    
+    HTTP/1.1 200 OK
 
 ## 2.2 Headers
 Els headers són metadades que proporcionen informació addicional sobre la resposta, com el tipus de contingut, la longitud del contingut, les cookies, i altres detalls de la comunicació.
@@ -157,10 +158,10 @@ Exemples de headers comuns:
 - Set-Cookie: Si s'han establert cookies al client.
 
 
-<code>Content-Type: application/json
-Content-Length: 123
-Date: Mon, 22 Jan 2025 12:00:00 GMT
-Server: Apache/2.4.41 (Ubuntu)</code>
+    Content-Type: application/json
+    Content-Length: 123
+    Date: Mon, 22 Jan 2025 12:00:00 GMT
+    Server: Apache/2.4.41 (Ubuntu)
 
 
 
@@ -169,14 +170,14 @@ El body de la resposta conté les dades que el servidor vol enviar al client. El
 - HTML: En el cas de pàgines web, el cos serà el codi HTML.
 - JSON: Quan s'està treballant amb API RESTful, el cos sovint serà un objecte o array JSON.
 - binari: Quan es carrega un fitxer, el cos contindrà les dades binàries d'aquest fitxer (per exemple, una imatge o un document).
-<code>{
-  "status": "success",
-  "message": "Data received successfully",
-  "data": {
-    "id": 123,
-    "name": "Joan"
-  }
-}</code>
+    {
+        "status": "success",
+        "message": "Data received successfully",
+        "data": {
+          "id": 123,
+          "name": "Joan"
+        }
+    }
 
 
 ## 2.4 Codis d’estat de Response Http
