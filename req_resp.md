@@ -119,17 +119,16 @@ Exemple petició Http  POST:
 3. application/json
 application/json és el tipus MIME utilitzat per enviar dades en format JSON. JSON (JavaScript Object Notation) és un format lleuger per emmagatzemar i transportar dades, àmpliament utilitzat en API RESTful i serveis web moderns. Aquest tipus s’utilitza per a la comunicació entre clients i servidors que requereixen enviar dades estructurades de forma més complexa, com objects o arrays.
 
-    POST /submit HTTP/1.1
-    Host: example.com
-    Content-Type: application/json
-    Content-Length: 42
+      POST /submit HTTP/1.1
+      Host: example.com
+      Content-Type: application/json
+      Content-Length: 42
 
-
-    {
-      "username": "John Doe",
-      "age": 30,
-      "city": "New York"
-    }
+      {
+        "username": "John Doe",
+        "age": 30,
+        "city": "New York"
+      }
 
 
 
