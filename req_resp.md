@@ -12,10 +12,15 @@ Un HTTP request és una sol·licitud que un client (normalment un navegador web 
 
 ## 1.1 Exemples de HTTP request
 GET request:
-<code>GET /index.html HTTP/1.1
-Host: www.example.com</code>
+
+<code>
+GET /index.html HTTP/1.1
+Host: www.example.com
+</code>
+
 POST request:
-<code>POST /api/login HTTP/1.1
+<code>
+POST /api/login HTTP/1.1
 Host: www.example.com
 Content-Type: application/json
 Content-Length: 45
@@ -23,7 +28,9 @@ Content-Length: 45
 {
   "username": "usuari",
   "password": "1234"
-}</code>
+}
+</code>
+
 ### Com funciona un HTTP request en un entorn real?
 1. El client (navegador o aplicació) inicia una sol·licitud HTTP enviant-la a un servidor.
 2. El servidor processa la sol·licitud i respon amb un HTTP response, que pot incloure dades (com una pàgina HTML) o un estat de confirmació (com 200 OK o 404 Not Found).
