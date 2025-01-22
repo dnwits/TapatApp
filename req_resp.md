@@ -130,8 +130,6 @@ application/json és el tipus MIME utilitzat per enviar dades en format JSON. JS
         "city": "New York"
       }
 
-
-
 # 2. Http Response
 Una HTTP Response (Resposta HTTP) és la resposta que el servidor envia al client després d'una petició HTTP (com ara una petició GET o POST). La resposta inclou informació sobre si la petició va ser procesada correctament o si va ocórrer un error.
 
