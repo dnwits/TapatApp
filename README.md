@@ -56,6 +56,6 @@ Què necessitem per cada End-point
         "username": "usuari1"
         }
 
-   -Codi 404:
+   - Codi 404:
 
         return jsonify({"error": "Usuario no trobat..."})
