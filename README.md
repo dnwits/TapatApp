@@ -49,13 +49,13 @@ Què necessitem per cada End-point
 - Resposta: Si l'usuari existeix mostrarà la informació bàsica (username i email) en format json. Si l'username introduït no existeix mostrarà una resposta que indiqui això.
    - Codi 200:
 
-        {
-        "email": "user1@gmail.com",
-        "id": 1,
-        "password": "12345",
-        "username": "usuari1"
-        }
+                {
+                "email": "user1@gmail.com",
+                "id": 1,
+                "password": "12345",
+                "username": "usuari1"
+                }
 
    - Codi 404:
 
-        return jsonify({"error": "Usuario no trobat..."})
+                return jsonify({"error": "Usuario no trobat..."})
