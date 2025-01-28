@@ -47,3 +47,10 @@ Què necessitem per cada End-point
 
 - Parametres que necessita la petició: (identifica els paràmetres i posa exemples en el cas de peticions GET) --> Username
 - Resposta: Si l'usuari existeix mostrarà la informació bàsica (username i email) en format json. Si l'username introduït no existeix mostrarà una resposta que indiqui això.
+
+        {
+        "email": "user1@gmail.com",
+        "id": 1,
+        "password": "12345",
+        "username": "usuari1"
+        }
