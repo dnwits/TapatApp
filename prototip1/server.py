@@ -27,7 +27,7 @@ class DAOUsers:
         for u in self.users:
             if u.username == username:
                 # print("\n"+str(u)+ " existeix :3")
-                return u
+                return u.__dict__
         return None
     
 # declara que utilizaremos flask
@@ -44,7 +44,10 @@ daoUser= DAOUsers()
 # Test de 'Hello World'
 @app.route('/hello', methods=['GET'])
 def hello():
-    return "Hello World :3"
+    user = str(request.args.get('username'))
+    #print(type(user))
+    return jsonify(daoUser.getUserByUsername("usuari1"))
+    #"Hello World :3 "+ user
 
 # Nuevo endpoint para buscar usuarios por username
 @app.route('/prototip/getuser/<username>', methods=['GET'])
