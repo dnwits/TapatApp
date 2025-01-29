@@ -1,0 +1,23 @@
+---
+title: Diagrama de la classe Client
+---
+classDiagram
+    Client_Vista_login "" --> Client_DAO_User
+    Client_DAO_User ""--> Servidor
+    Client_DAO_User ""--> Client_output
+    Servidor ""--> Client_DAO_User
+    Client_output
+    class Client_Vista_login{
+        +enviarDadeUser(username):
+    }
+    class Client_DAO_User{
+        -int id
+        +String userName
+        -String password
+        -String email
+        +peticióHTTP(username): void
+        +respostaHTTP(username): void
+    }
+    class Client_output{
+        +mostrarInformacióUser(): void
+    }
