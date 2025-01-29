@@ -50,19 +50,21 @@ def hello():
     #"Hello World :3 "+ user
 
 # Nuevo endpoint para buscar usuarios por username
+@app.route('/prototip/getuser/', defaults={'username': None}, methods=['GET'])
 @app.route('/prototip/getuser/<username>', methods=['GET'])
 def get_user(username):
+    if username is None or username.strip() == "":
+        return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"}), 400  # Código 400: Bad Request
+
     user = daoUser.getUserByUsername(username)
     if user:
-        # Devolvemos la información del usuario como JSON
         return jsonify({
             "id": user.id,
             "username": user.username,
             "email": user.email
-        }), 200   #Código 200: OK
+        }), 200  # Código 200: OK
     else:
-        # Devolvemos un mensaje de error
-        return jsonify({"error": "Usuario no trobat..."}), 404  # Código 404: No encontrado
+        return jsonify({"error": "Usuari no trobat..."}), 404  # Código 404: No encontrado
     
 # CLASE 21/01/25 BIEN!!!!!!!!!!!!!!
 @app.route('/tapatapp/getuser', methods=['GET'])

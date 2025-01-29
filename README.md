@@ -56,6 +56,10 @@ Què necessitem per cada End-point
                 "username": "usuari1"
                 }
 
-   - Codi 404:
+   - Codi 404 (si l'username introduït no existeix):
 
                 return jsonify({"error": "Usuario no trobat..."})
+
+   - Codi 404 (si no s'introdueix cap username):
+
+                 return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"})
