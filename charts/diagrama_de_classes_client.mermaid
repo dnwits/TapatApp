@@ -24,27 +24,23 @@ classDiagram
     %% class Client_output{
     %%     +mostrarInformacióUser(): void
     %% }
-    Client_Vista_login --> Client_DAO_User
-    Client_DAO_User --> Client_output
+    Usuari --> Client_DAO_User
+    Client_DAO_User --> Client_Vista
     
-    class Client_Vista_login{
-        +enviarDadesUser(username, password): void
-        +validarInputs(username, password): boolean
+    class Client_Vista{
+        +mostrarInformacioUser(id, username, email): void
+        +mostrarError(missatge): void
     }
 
     class Client_DAO_User{
         +enviarPeticioHTTP(username, password): void
         +processarRespostaHTTP(resposta): void
     }
-    
-    class Client_output{
-        +mostrarInformacioUser(id, username, email): void
-        +mostrarError(missatge): void
-    }
 
-    %% Classe opcional per representar l'usuari
     class Usuari{
         -int id
         +String userName
         +String email
+        -String password
+        +demanarDades(username): void
     }
