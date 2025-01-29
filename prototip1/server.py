@@ -50,8 +50,8 @@ def hello():
     #"Hello World :3 "+ user
 
 # Nuevo endpoint para buscar usuarios por username
-@app.route('/prototip/getuser/', defaults={'username': None}, methods=['GET'])
-@app.route('/prototip/getuser/<username>', methods=['GET'])
+@app.route('/prototip1/getuser/', defaults={'username': None}, methods=['GET'])
+@app.route('/prototip1/getuser/<username>', methods=['GET'])
 def get_user(username):
     if username is None or username.strip() == "":
         return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"}), 400  # Código 400: Bad Request
@@ -73,9 +73,9 @@ def getUser():
     email = str(request.args.get('email'))
     return "Hello :3            "+"Nom: "+n+", email: "+email
 
-@app.route('/prototip/getuser/<string:username>', methods=['GET'])
-def prototipGetUser(username):
-    return "Prototip 1: user >>>> "+username
+# @app.route('/prototip/getuser/<string:username>', methods=['GET'])
+# def prototipGetUser(username):
+#     return "Prototip 1: user >>>> "+username
 
 if __name__ == '__main__':
      app.run(debug=True,host="192.168.144.157",port="10050") #,host="0.0.0.0",port="10050"
