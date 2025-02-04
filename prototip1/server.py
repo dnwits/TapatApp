@@ -7,8 +7,8 @@ class User:
         self.password=password
         self.email=email
 
-    def __str__(self):
-        return "ID: "+ str(self.id)+"\n"+"Usuari:" + self.username+"\n" +"Email: " + self.email
+    # def __str__(self):
+    #     return "ID: "+ str(self.id)+"\n"+"Usuari:" + self.username+"\n" +"Email: " + self.email
 
 # Crear lista de usuarios (id, username, pass y email)
 listUsers=[
@@ -26,8 +26,7 @@ class DAOUsers:
     def getUserByUsername(self,username):
         for u in self.users:
             if u.username == username:
-                # print("\n"+str(u)+ " existeix :3")
-                return u.__dict__
+                return u #.__dict__
         return None
     
 # declara que utilizaremos flask
@@ -35,19 +34,11 @@ class DAOUsers:
 app = Flask(__name__)       
 daoUser= DAOUsers()
 
-#u=daoUser.getUserByUsername("usuari1")
-# if (u):
-#     print(str(u)+ "existeix :3")
-# else:
-#     print("no trobat")
-
-# Test de 'Hello World'
 @app.route('/hello', methods=['GET'])
 def hello():
     user = str(request.args.get('username'))
-    #print(type(user))
     return jsonify(daoUser.getUserByUsername("usuari1"))
-    #"Hello World :3 "+ user
+
 
 # Nuevo endpoint para buscar usuarios por username
 @app.route('/prototip1/getuser/', defaults={'username': None}, methods=['GET'])
@@ -73,12 +64,5 @@ def getUser():
     email = str(request.args.get('email'))
     return "Hello :3            "+"Nom: "+n+", email: "+email
 
-# @app.route('/prototip/getuser/<string:username>', methods=['GET'])
-# def prototipGetUser(username):
-#     return "Prototip 1: user >>>> "+username
-
 if __name__ == '__main__':
      app.run(debug=True,host="192.168.144.157",port="10050") #,host="0.0.0.0",port="10050"
-# @app.route('/proto1/getdata', methods=['GET'])
-# def getData():
-#     return 
