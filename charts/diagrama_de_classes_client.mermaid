@@ -1,17 +1,14 @@
 ---
-title: Diagrama de la classe Client
+title: Diagrama de la classe Client | Prototip 1
 ---
 classDiagram
     Vista --> Client_DAO_User
-    Client_DAO_User --> Usuari
-    Client_DAO_User --> Vista
     
     class Vista{
-        +User user
         +String username
-        +getUserByUsername()
-        +mostrarInformacioUser(id, username, email): void
-        +mostrarError(missatge): void
+        +getUserByConsole()
+        +mostrarInformacioUser(User usuari)
+        +mostrarError(Error missatge)
     }
 
     class Client_DAO_User{
@@ -23,10 +20,9 @@ classDiagram
 
     class Usuari{
         -int id
-        +String userName
+        +String username
         +String email
         -String password
-        +demanarDades(username): void
     }
     class Error{
         +int code
