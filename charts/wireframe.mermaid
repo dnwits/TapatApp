@@ -4,10 +4,9 @@ flowchart TD
     %% || Pantalla: Login ||  
     %% || Inputs: Usuari (email o username) i Contrasenya ||
     %% || Botó: "Iniciar sessió", "Registrar-se", "He oblidat la contrasenya" ||
+    
     B-->|Login incorrecto| B
-    B --> D[(Llista nens)] 
-    %%C[Validar credencials]
-    %%C -->|Correctes i es té més d'1 nen a càrrec| D[(Llista nens)]
+    B -->|Més d'un nen| D[(Llista nens)] 
     %% || Pantalla: Llista nens ||
     %% || Mostra els nens assignats al cuidador ||
     %% || Opcions: Seleccionar nen || Botó: "Afegir un nen nou" ||
@@ -32,7 +31,6 @@ flowchart TD
     %% || Formulari amb camp: Email ||
     %% || Botó: "Enviar enllaç de restabliment" ||
     
-    H --> E
-    H --> D
-    %%G --> D
+    H -->|Només un nen| E
+    H -->|Més d'un nen| D
     G --> E
