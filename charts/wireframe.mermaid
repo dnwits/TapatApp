@@ -1,0 +1,38 @@
+flowchart TD
+    A[Benvinguda] --> B[Login]
+    %% Comentarios explicativos para Login %%
+    %% || Pantalla: Login ||  
+    %% || Inputs: Usuari (email o username) i Contrasenya ||
+    %% || Botó: "Iniciar sessió", "Registrar-se", "He oblidat la contrasenya" ||
+    B-->|Login incorrecto| B
+    B --> D[(Llista nens)] 
+    %%C[Validar credencials]
+    %%C -->|Correctes i es té més d'1 nen a càrrec| D[(Llista nens)]
+    %% || Pantalla: Llista nens ||
+    %% || Mostra els nens assignats al cuidador ||
+    %% || Opcions: Seleccionar nen || Botó: "Afegir un nen nou" ||
+
+    D --> E[Informació nen]
+    %% || Pantalla: Informació nen ||
+    %% || Mostra el registre de temps amb el pegat del nen ||
+    %% || Opcions: Editar informació, afegir temps || Botó: "Tornar" ||
+
+    B -->|Primera vegada| F[Registre]
+    %% || Pantalla: Registre ||
+    %% || Formulari amb camps: Nom, Usuari, Email, Contrasenya ||
+    %% || Botó: "Registrar-se" ||
+
+    F --> G[Afegir un nen]
+    %% || Pantalla: Afegir un nen ||
+    %% || Formulari amb camps: Nom del nen, Edat ||
+    %% || Botó: "Afegir" ||
+
+    B -->|He oblidat la contrasenya| H[Restablir contrasenya]
+    %% || Pantalla: Restablir contrasenya ||
+    %% || Formulari amb camp: Email ||
+    %% || Botó: "Enviar enllaç de restabliment" ||
+    
+    H --> E
+    H --> D
+    %%G --> D
+    G --> E
