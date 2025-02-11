@@ -14,6 +14,7 @@ users = [
 ]
 
 # Crear les classes Child, Tap, Role, Status i Treatment
+#CLASSE CHILD------------------------------------------------------------------------------------------
 class Child:
     def __init__(self, id, child_name, sleep_average, treatment_id, time):
         self.id=id
@@ -29,7 +30,7 @@ children = [
     Child(id=1, child_name="Carol Child", sleep_average=8, treatment_id=1, time=6),
     Child(id=2, child_name="Jaco Child", sleep_average=10, treatment_id=2, time=6)
 ]
-
+#CLASSE TAP--------------------------------------------------------------------------------------------
 class Tap:
     def __init__(self, id, child_id, status_id,user_id, init, end):
         self.id=id
@@ -47,14 +48,14 @@ taps = [
     Tap(id=2, child_id=2, status_id=2, user_id=2, init="2024-12-18T21:42:43", end="2024-12-18T22:42:43")
 ]
 
-# pregunta*******************************************
+# pregunta****
 relation_user_child = [
     {"user_id": 1, "child_id": 1, "rol_id": 1},
     {"user_id": 1, "child_id": 1, "rol_id": 2},
     {"user_id": 2, "child_id": 2, "rol_id": 1},
     {"user_id": 2, "child_id": 2, "rol_id": 2}
 ]
-
+#CLASSE ROL--------------------------------------------------------------------------------------------
 class Role:
     def __init__(self, id, type_rol):
         self.id=id
@@ -69,7 +70,7 @@ roles = [
     Role(id=3, type_rol='Cuidador'),
     Role(id=4, type_rol='Seguiment')
 ]
-
+#CLASSE STATUS-----------------------------------------------------------------------------------------
 class Status:
     def __init__(self, id, name):
         self.id=id
@@ -83,6 +84,7 @@ statuses = [
     Status(id=3, name="yes_eyepatch"),
     Status(id=4, name="no_eyepatch")
 ]
+#CLASSE TREATEMENT-------------------------------------------------------------------------------------
 class Treatment:
     def __init__(self, id, name):
         self.id=id
