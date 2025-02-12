@@ -13,8 +13,10 @@ flowchart TD
 
     D --> E[Informació nen]
     %% || Pantalla: Informació nen ||
-    %% || Mostra el registre de temps amb el pegat del nen ||
-    %% || Opcions: Editar informació, afegir temps || Botó: "Tornar" ||
+    %% || Mostra nom nen, edat, tractament ||
+    %% || Opcions: Editar informació|| Botó: "Tornar" ||
+    %% || Mostrar historic del nen amb el pegat ||
+
 
     B -->|Primera vegada| F[Registre]
     %% || Pantalla: Registre ||
@@ -34,5 +36,10 @@ flowchart TD
     H -->|Només un nen| E
     H -->|Més d'un nen| D
     G --> E
-    E-->I[Editar informació nen]
+    E-->I[Estat del pegat]
+    %% ||Pantalla: Desplejable per indicar estat||
+    %% ||Botó: guardar estat||
     E-->J[Afegir cuidador]
+    I-->K[Dormit]
+    I-->L[Despert amb PEGAT]
+    I-->M[Despert]
