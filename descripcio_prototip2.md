@@ -27,17 +27,17 @@
 - Inputs: Usuari (email o username) i Contrasenya
 - Botó: "Crear compte"
 
-***Vista Llistat nens***:
+***Vista de Llistat nens***:
 - Descripció: mostra els nens assignats al cuidador
 - Opcions: Seleccionar nen
 - Botó: "Afegir un nen nou", seleccionar nen (click a sobre)
 
-***Afeguir un nen***:
-- Descripció: formulari per afeguir nen
+***Vista per Afegir un nen***:
+- Descripció: formulari per afegir nen
 - Input: Nom del nen, Edat, tractament (hores o percentatge)
 - Botó: "Afegir", "Cancelar"
 
-***Vista Informació del nen***:
+***Vista d'Informació del nen***:
 - Descripció: pantalla per mostrar informació del nen i estat tap
 - Input: estat del tap
 - Botó: "Desar canvis", "Cancelar"
