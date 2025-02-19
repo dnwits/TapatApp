@@ -1,8 +1,8 @@
-## Prototip 2
+# Prototip 2
 
-###  Implementació Prototip 2
+##  Implementació Prototip 2
 
-#### Backend:
+### Backend:
 
 ***Base de dades***:
 - Importar les dades del usuaris per fer funcionar el servei (DAOUsers).
