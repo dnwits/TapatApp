@@ -2,9 +2,9 @@
 
 ###  Implementació Prototip 2
 
-<u>Backend</u>:
+#### Backend:
 
-**Base de dades**:
+***Base de dades***:
 - Importar les dades del usuaris per fer funcionar el servei (DAOUsers).
 - Importar les dades del nens per fer funcionar el servei (DAOChild).
 - Relacionar obj user & child (relation & treatement).
@@ -12,12 +12,12 @@
 
 #### Frontend:
 
-**Vista de Login**:
+***Vista de Login***:
 - Descripció: Pantalla de Login on l'usuari es validarà
 - Info. Entrada que introdueix l'Usuari: Username o email, Password
 - Info. que necessita la Vista: None
 
-**Vista de Registre**:
+***Vista de Registre***:
 - Descripció: Formulari de Registre d'Usuari 
 - Info. Entrada: username, password, mail
 - Info. Vista: None
@@ -27,7 +27,7 @@
 - Info. Entrada: mail, new password
 - Info. Vista: None -->
 
-**Vista de Child Taps**:
+***Vista de Child Taps***:
 - Descripció: Vista del Child que té assignat l'Usuari amb els registres d'estat del pegat 
 - Info. Entrada: None
-- Info. Vista: User, Child i Taps 
+- Info. Vista: User, Child, tractament, estat pegat
