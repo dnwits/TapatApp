@@ -1,6 +1,7 @@
 # Prototip 2
 
 ##  Implementació Prototip 2
+[Wireframe prototip 2](wireframe_prototip2.mermaid)
 
 ### Backend:
 
