@@ -13,6 +13,8 @@
 
 ### Frontend:
 
+[Frontend prototip 2](dgrm_class_frontend_p2.mermaid)
+
 ***Vista de Login***:
 - Descripció: pantalla de Login on l'usuari es validarà
 - Inputs: Usuari (email o username) i Contrasenya
@@ -42,3 +44,6 @@
 - Descripció: pantalla per mostrar informació del nen i estat tap
 - Input: estat del tap
 - Botó: "Desar canvis", "Cancelar"
+
+##  Diagrama final arquitectura Prototip 2
+[Arquitectura prototip 2](dgrm_arch_p2.mermaid)
