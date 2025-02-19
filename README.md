@@ -33,4 +33,4 @@ L'objectiu de TapatApp és proporcionar a totes les famílies afectades per cata
 [Definició dels endpoints del webservice](endpoint_webservice.md)
 
 ## Descripció d'objectius a implementar prototip 2
-[Objectius prototip 2](descripcio_prototip2.md)
+[Objectius prototip 2](/prototip2/documentacio/descripcio_prototip2.md)
