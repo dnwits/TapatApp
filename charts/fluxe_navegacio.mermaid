@@ -4,7 +4,7 @@ flowchart TD
     %% || Pantalla: Login ||  
     %% || Inputs: Usuari (email o username) i Contrasenya ||
     %% || Botó: "Iniciar sessió", "Registrar-se", "He oblidat la contrasenya" ||
-    
+    B -->|Login correcto| E
     B-->|Login incorrecto| B
     B -->|Més d'un nen| D[(Llista nens)] 
     %% || Pantalla: Llista nens ||
