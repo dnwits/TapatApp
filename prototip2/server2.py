@@ -18,7 +18,7 @@ class DAOUsers:
     def getUserByUsername(self,username):
         for u in self.users:
             if u.username == username:
-                return u #.__dict__
+                return u.__dict__
         return None
     
 class DAOChild:
@@ -53,37 +53,51 @@ class DAOChild:
 # declara que utilizaremos flask
 # variable que llama al metodo DAOUsers de antes
 app = Flask(__name__)
-daoUser = DAOUsers()
-daoChild = DAOChild()
-
+# daoUser = DAOUsers()
+# daoChild = DAOChild()
+user_dao = DAOUsers()
 # Endpoints
-@app.route('/prototip2/getuser/', defaults={'username': None}, methods=['GET'])
-@app.route('/prototip2/getuser/<username>', methods=['GET'])
-def get_user(username):
-    if not username:
-        return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"}), 400
+# @app.route('/prototip2/getuser/', defaults={'username': None}, methods=['GET'])
+# @app.route('/prototip2/getuser/<username>', methods=['GET'])
+# def get_user(username):
+#     if not username:
+#         return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"}), 400
 
-    user = daoUser.getUserByUsername(username)
+#     user = daoUser.getUserByUsername(username)
+#     if user:
+#         return jsonify({
+#             "id": user.id,
+#             "username": user.username,
+#             "email": user.email
+#         }), 200
+#     else:
+#         return jsonify({"error": "Usuari no trobat..."}), 404
+
+# @app.route('/prototip2/getchildren/<username>', methods=['GET'])
+# def get_children(username):
+#     user = daoUser.getUserByUsername(username)
+#     if not user:
+#         return jsonify({"error": "Usuari no trobat..."}), 404
+
+#     children = daoChild.getChildrenByUserId(user.id)
+#     if children:
+#         return jsonify(children), 200
+#     else:
+#         return jsonify({"error": "Aquest usuari no té nens associats"}), 404
+@app.route('/prototip2/users', methods=['GET'])
+def get_users():
+    return jsonify(user_dao.get_all_users())
+
+@app.route('/prototip2/getuser', methods=['GET'])
+def get_user_by_username():
+    username=request.args.get('username', default="", type=str)
+    print("+"+username+"+")
+    user = user_dao.get_user_by_username(username)
     if user:
-        return jsonify({
-            "id": user.id,
-            "username": user.username,
-            "email": user.email
-        }), 200
+        return jsonify(user)
     else:
-        return jsonify({"error": "Usuari no trobat..."}), 404
+        return jsonify({"error": f"User with username {username} not found"}), 404
 
-@app.route('/prototip2/getchildren/<username>', methods=['GET'])
-def get_children(username):
-    user = daoUser.getUserByUsername(username)
-    if not user:
-        return jsonify({"error": "Usuari no trobat..."}), 404
-
-    children = daoChild.getChildrenByUserId(user.id)
-    if children:
-        return jsonify(children), 200
-    else:
-        return jsonify({"error": "Aquest usuari no té nens associats"}), 404
 # def get_children(username):
 #     user = daoUser.getUserByUsername(username)
 #     if not user:

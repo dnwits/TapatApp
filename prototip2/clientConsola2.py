@@ -46,10 +46,9 @@ class ViewConsole:
     def showUserInfo(username):
         user = UserDAO.get_user_by_username(username)
         if user:
-            print(f"\nUser Info: {user}")
-            ViewConsole.show_children_info(username)
+            print(f"User Info: {user}")
         else:
-            print("User not found.")
+            print(f"User with username {username} not found")
 
     # def showChildrenInfo(username):
     #     children = ChildDAO.get_children_by_username(username)
