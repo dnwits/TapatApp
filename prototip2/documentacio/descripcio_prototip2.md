@@ -5,6 +5,8 @@
 
 ### Backend:
 
+[Backend prototip 2](dgrm_class_backend_p2.mermaid)
+
 ***Base de dades***:
 - Importar les dades del usuaris per fer funcionar el servei (DAOUsers).
 - Importar les dades del nens per fer funcionar el servei (DAOChild).
@@ -14,10 +16,6 @@
 ### Frontend:
 
 [Frontend prototip 2](dgrm_class_frontend_p2.mermaid)
-
-### Backend:
-
-[Backend prototip 2](dgrm_class_backend_p2.mermaid)
 
 ***Vista de Login***:
 - Descripció: pantalla de Login on l'usuari es validarà
