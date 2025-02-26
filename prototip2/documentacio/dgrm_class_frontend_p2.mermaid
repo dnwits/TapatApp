@@ -3,9 +3,9 @@ title: Diagrama de classes Frontend | Prototip 2
 ---
 classDiagram
     Vista ..>  UserDAO : Consulta a
-    UserDAO..> Vista  : Respon amb dades demanades
-    UserDAO ..> ChildDAO : Conté llista de 
-    ChildDAO ..> UserDAO
+    UserDAO ..> Vista  : Respon la <br> petició
+    UserDAO ..> ChildDAO : Conté <br>children info
+    ChildDAO ..> UserDAO : Respon info <br> de child
     
     class Vista{
         +String username
