@@ -37,7 +37,21 @@ class UserDAO:
             return user
         else:
             return None
+        
+# Clase ChildDAO
+class ChildDAO:
+    BASE_URL = "http://localhost:10050/prototip2"
 
+    @staticmethod
+    def get_children_by_username(username):
+        response = requests.get(f'{ChildDAO.BASE_URL}/getchildren/{username}')
+        if response.status_code == 200:
+            children_data = response.json()
+            children = [Child(c["id"], c["name"], c["sleep_average"], c["treatment"], c["time"]) for c in children_data]
+            return children
+        else:
+            print(f"Error: {response.json().get('error', 'No se pudo obtener la información de los niños')}")
+            return None
 # Clase ViewConsole
 class ViewConsole:
     def getInputUsername():
@@ -50,14 +64,14 @@ class ViewConsole:
         else:
             print(f"User with username {username} not found")
 
-    # def showChildrenInfo(username):
-    #     children = ChildDAO.get_children_by_username(username)
-    #     if children:
-    #         print("\nChildren Information:")
-    #         for child in children:
-    #             print(child)
-    #     else:
-    #         print("\nThis user has no associated children.")
+    def showChildrenInfo(username):
+        children = ChildDAO.get_children_by_username(username)
+        if children:
+            print("\nChildren Information:")
+            for child in children:
+                print(child)
+        else:
+            print("\nThis user has no associated children.")
 
 if __name__ == "__main__":
     username = ViewConsole.getInputUsername()
