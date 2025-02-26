@@ -4,12 +4,12 @@ title: Diagrama de clases Backend | Prototip 2
 
 classDiagram
     Webservice --> DAOUser: demana info user
-    DAOUser --> User: busca info user
+    DAOUser --> User: obté info user
     DAOUser --> Webservice: respon amb info user <br> si existeix
     Webservice --> DAOChild: demana info child 
-    DAOChild --> Child: retorna info child
-    DAOChild --> Webservice: respon amb info child <br> si existeix
-    DAOChild --> Tap: respon amb info tap del child 
+    DAOChild --> Child: obté info child
+    DAOChild --> Webservice: respon info child <br> si existeix
+    DAOChild --> Tap: obté amb info tap del child 
 
     class Webservice {
         +showUserInfo(User)

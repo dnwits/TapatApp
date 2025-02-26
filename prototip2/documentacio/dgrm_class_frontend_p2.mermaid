@@ -3,7 +3,9 @@ title: Diagrama de classes Frontend | Prototip 2
 ---
 classDiagram
     Vista ..>  UserDAO : Consulta a
+    UserDAO..> Vista  : Respon amb dades demanades
     UserDAO ..> ChildDAO : Conté llista de 
+    ChildDAO ..> UserDAO
     
     class Vista{
         +String username
@@ -25,7 +27,7 @@ classDiagram
         +getChildByUserId(): obj Child
     }
 
-    namespace Classes{
+    namespace Classes_Utilitzades{
     class Usuari{
         -int id
         +String username
