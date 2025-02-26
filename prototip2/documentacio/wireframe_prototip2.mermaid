@@ -1,12 +1,17 @@
+---
+title: Wireframe | Prototip 2
+---
 graph TD;
     A[Benvinguda] --> B[Login]
     B --> C[Listat de nens]
-    C --> D[Nens]
+    C --> D[Informació nen]
     B --> D
     B --> E[Registrar User / Nen]
     B --> F[He oblidat la contrasenya]
     F-->B
-    D --> G[Cuidador <br>afegir / modificar / eliminar]
-    D --> H[Editar perfil]
-    D --> I[Editar info nen]
+    D --> G[Editar cuidador]
+    G-->J[afegir / modificar / eliminar]
+    D --> H[Editar informació nen]
+    D --> I[Estat pegat]
     E --> D
+    I-->K[Dormit / Despert amb PEGAT / Despert]
