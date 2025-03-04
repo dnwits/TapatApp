@@ -48,13 +48,29 @@ taps = [
     Tap(id=2, child_id=2, status_id=2, user_id=2, init="2024-12-18T21:42:43", end="2024-12-18T22:42:43")
 ]
 
-# pregunta****
+#CLASSE RELACIONS--------------------------------------------------------------------------------------
+class RelationUserChild:
+    def __init__(self, user_id, child_id, rol_id):
+        self.user_id = user_id
+        self.child_id = child_id
+        self.rol_id = rol_id
+
+    def __str__(self):
+        return f"User: {self.user_id}, Child: {self.child_id}, Rol: {self.rol_id}"
+
+# relation_user_child = [
+#     {"user_id": 1, "child_id": 1, "rol_id": 1},
+#     {"user_id": 1, "child_id": 1, "rol_id": 2},
+#     {"user_id": 2, "child_id": 2, "rol_id": 1},
+#     {"user_id": 2, "child_id": 2, "rol_id": 2}
+# ]
 relation_user_child = [
-    {"user_id": 1, "child_id": 1, "rol_id": 1},
-    {"user_id": 1, "child_id": 1, "rol_id": 2},
-    {"user_id": 2, "child_id": 2, "rol_id": 1},
-    {"user_id": 2, "child_id": 2, "rol_id": 2}
+    RelationUserChild(user_id=1, child_id=1, rol_id=1),
+    RelationUserChild(user_id=1, child_id=1, rol_id=2),
+    RelationUserChild(user_id=2, child_id=2, rol_id=1),
+    RelationUserChild(user_id=2, child_id=2, rol_id=2)
 ]
+
 #CLASSE ROL--------------------------------------------------------------------------------------------
 class Role:
     def __init__(self, id, type_rol):
