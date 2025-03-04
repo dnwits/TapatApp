@@ -27,7 +27,7 @@ class Child:
 
 
 class APIClient:
-    BASE_URL = "http://localhost:5000/prototip2"  # Asegúrate que tu servidor corre en este puerto
+    BASE_URL = "http://localhost:5000/prototip2"  # puerto por defecto def en server2.py
 
     @staticmethod
     def get_user(username):
@@ -52,14 +52,14 @@ class APIClient:
             #     return [Child(c["id"], c["name"], c["sleep_average"], c["treatment_id"], c["time"]) for c in children]
             if response.status_code == 200:
                 children_data = response.json()
-                children = [Child(c["id"], c["name"], c["sleep_average"], c["treatment"], c["time"]) for c in children_data]
+                return [Child(c["id"], c["name"], c["sleep_average"], c["treatment"], c["time"]) for c in children_data]
+                #children = [Child(c["id"], c["name"], c["sleep_average"], c["treatment"], c["time"]) for c in children_data]
             else:
                 print(f"Error: {response.json().get('error', 'No children found')}")
                 return []
         except Exception as e:
             print(f"Connection Error: {e}")
             return []
-
 
 class ConsoleView:
     @staticmethod
@@ -96,7 +96,6 @@ class ConsoleView:
 
             else:
                 print("Opció incorrecta. Torna a intentar-ho.")
-
 
 if __name__ == "__main__":
     ConsoleView.run()

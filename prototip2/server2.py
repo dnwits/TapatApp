@@ -52,11 +52,12 @@ class DAOChild:
             if treatment.id == treatment_id:
                 return treatment
         return None
-# declara que utilizaremos flask
+
 # variable que llama al metodo DAOUsers de antes
 app = Flask(__name__)
 daoChild = DAOChild()
 daoUser = DAOUsers()
+#daoRol = DAORoles()
 # Endpoints
 
 @app.route('/prototip2/getuser/', methods=['GET'])
@@ -81,7 +82,6 @@ def get_children(username):
     user = daoUser.getUserByUsername(username)
     if not user:
         return jsonify({"error": "Usuari no trobat..."}), 404
-
     #children = daoChild.getChildrenByUserId(user["id"])
     children = daoChild.getChildrenByUserId(user["id"]) if isinstance(user, dict) else daoChild.getChildrenByUserId(user.id)
     #children = daoChild.getChildrenByUserId(user.id)
