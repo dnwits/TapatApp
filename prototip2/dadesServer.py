@@ -56,14 +56,9 @@ class RelationUserChild:
         self.rol_id = rol_id
 
     def __str__(self):
-        return f"User: {self.user_id}, Child: {self.child_id}, Rol: {self.rol_id}"
+        return self.user_id + ":" + self.child_id + ":" + self.rol_id
+        #f"User: {self.user_id}, Child: {self.child_id}, Rol: {self.rol_id}"
 
-# relation_user_child = [
-#     {"user_id": 1, "child_id": 1, "rol_id": 1},
-#     {"user_id": 1, "child_id": 1, "rol_id": 2},
-#     {"user_id": 2, "child_id": 2, "rol_id": 1},
-#     {"user_id": 2, "child_id": 2, "rol_id": 2}
-# ]
 relation_user_child = [
     RelationUserChild(user_id=1, child_id=1, rol_id=1),
     RelationUserChild(user_id=1, child_id=1, rol_id=2),

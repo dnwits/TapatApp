@@ -82,7 +82,9 @@ def get_children(username):
     if not user:
         return jsonify({"error": "Usuari no trobat..."}), 404
 
-    children = daoChild.getChildrenByUserId(user["id"]) 
+    #children = daoChild.getChildrenByUserId(user["id"])
+    children = daoChild.getChildrenByUserId(user["id"]) if isinstance(user, dict) else daoChild.getChildrenByUserId(user.id)
+    #children = daoChild.getChildrenByUserId(user.id)
     if children:
         return jsonify(children), 200  # correcte
     else:

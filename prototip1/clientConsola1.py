@@ -29,14 +29,14 @@ class UserDAO:
         
 class ViewConsole:
     def getInputUsername():
-        return input("Enter username: ")
+        return input("Introdueixi el username: ")
     
     def showUserInfo(username):
         user = UserDAO.get_user_by_username(username)
         if user:
-            print(f"User Info: {user}")
+            print(f"Informació usuari: {user}")
         else:
-            print(f"User with username {username} not found")
+            print(f"No s'ha trobat a l'usuari {username}")
 
 if __name__ == "__main__":
     username = ViewConsole.getInputUsername()
