@@ -53,7 +53,6 @@ class APIClient:
             if response.status_code == 200:
                 children_data = response.json()
                 return [Child(c["id"], c["name"], c["sleep_average"], c["treatment"], c["time"]) for c in children_data]
-                #children = [Child(c["id"], c["name"], c["sleep_average"], c["treatment"], c["time"]) for c in children_data]
             else:
                 print(f"Error: {response.json().get('error', 'No children found')}")
                 return []
@@ -64,9 +63,9 @@ class APIClient:
 class ConsoleView:
     @staticmethod
     def menu():
-        print("\n--- MENU ---")
-        print("1. Consultar Usuari")
-        print("2. Consultar Nens de l'Usuari")
+        print("\n--- MENÚ ---")
+        print("1. Consultar usuari")
+        print("2. Consultar nens de l'usuari")
         print("3. Sortir")
 
     @staticmethod

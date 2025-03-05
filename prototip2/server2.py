@@ -57,7 +57,6 @@ class DAOChild:
 app = Flask(__name__)
 daoChild = DAOChild()
 daoUser = DAOUsers()
-#daoRol = DAORoles()
 # Endpoints
 
 @app.route('/prototip2/getuser/', methods=['GET'])
@@ -76,7 +75,6 @@ def get_user():
     else:
         return jsonify({"error": "Usuari no trobat..."}), 404
 
-
 @app.route('/prototip2/getchildren/<username>', methods=['GET'])
 def get_children(username):
     user = daoUser.getUserByUsername(username)
@@ -89,6 +87,7 @@ def get_children(username):
         return jsonify(children), 200  # correcte
     else:
         return jsonify({"error": "Aquest usuari no té nens associats"}), 404
+
 
 
 if __name__ == '__main__':
