@@ -85,7 +85,7 @@ class ConsoleView:
     @staticmethod
     def menu():
         print("\n--- MENÚ ---")
-        print("1. Consultar usuari")
+        print("1. Consultar informació de l'usuari")
         print("2. Consultar nens de l'usuari")
         print("3. Sortir")
 
