@@ -10,6 +10,7 @@ classDiagram
     DAOChild --> Child: obté info child
     DAOChild --> Webservice: respon info child <br> si existeix
     DAOChild --> Tap: obté amb info tap del child 
+     DAOChild --> Treatement: obté info tipus tractament (h / %)
 
     class Webservice {
         +showUserInfo(User)
@@ -31,6 +32,7 @@ classDiagram
     class DAOChild {
         + Child[] Children
         + getChildByUserId(User id)
+        + getTreatmentById(Treatement id)
     }
 
     class Child {
@@ -46,5 +48,9 @@ classDiagram
         + int time_remaining
         + Date start_date
         + Date end_date
+    }
+    class Treatement {
+        + int id
+        + String name
     }
 
