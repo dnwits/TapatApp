@@ -88,6 +88,16 @@ def get_children(username):
     else:
         return jsonify({"error": "Aquest usuari no té nens associats"}), 404
 
+@app.route('/prototip2/login', methods=['POST'])
+def login():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+    user = daoUser.getUserByUsername(username)
+    if user and user["password"] == password:
+        return jsonify(user), 200
+    else:
+        return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
 
 
 if __name__ == '__main__':
