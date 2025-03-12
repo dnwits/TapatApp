@@ -23,10 +23,3 @@ sequenceDiagram
         s->>a: indicar que l'usuari no existeix
         a->>u: indicar que l'usuari no existeix
     end
-    alt Autologin
-        s->>s: validar token
-        s->>b: obtenir dades de l'usuari
-        b->>s: enviar dades
-        s->>a: retornar dades
-        a->>u: mostrar dades
-    end
