@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant j as Jugador1
+    participant i as Jugador2
+    participant s as Servidor
+    j->>s: crear partida
+    s->>j: partida creada
+    i->>s: uneix a la partida
+    s->>j: START GAME
+    s->>i: START GAME
+    alt GAME
+    i->>j: dispara i encerta
+    j->>i: fi partida
+    j->>s: GAME OVER
+    end

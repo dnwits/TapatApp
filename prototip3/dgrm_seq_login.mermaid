@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant u as Usuari
+    participant a as App
+    participant s as Web Service
+    participant b as BBDD
+    u->>a: donar credencials
+    a->>s: enviar credencials
+    s->>b: verificar credencials
+    alt Credencials Correctes i add Token
+        b->>b: generar token
+        b->>s: credencials OK enviar token
+        a->>a: generar token
+        s->>a: enviar token
+        a->>u: login OK amb token
+    end   
+    alt Credencials Incorrectes
+        b->>s: credencials KO
+        s->>a: password incorrecte
+        a->>u: password incorrecte
+    end
+    alt Usuari No Existeix
+        b->>s: usuari no trobat
+        s->>a: indicar que l'usuari no existeix
+        a->>u: indicar que l'usuari no existeix
+    end
