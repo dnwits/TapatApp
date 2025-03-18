@@ -59,7 +59,7 @@ daoChild = DAOChild()
 daoUser = DAOUsers()
 # Endpoints
 
-@app.route('/prototip2/getuser/', methods=['GET'])
+@app.route('/prototip3/getuser/', methods=['GET'])
 def get_user():
     username = request.args.get('username')
     if not username:
@@ -75,7 +75,7 @@ def get_user():
     else:
         return jsonify({"error": "Usuari no trobat..."}), 404
 
-@app.route('/prototip2/getchildren/<username>', methods=['GET'])
+@app.route('/prototip3/getchildren/<username>', methods=['GET'])
 def get_children(username):
     user = daoUser.getUserByUsername(username)
     if not user:
@@ -88,7 +88,7 @@ def get_children(username):
     else:
         return jsonify({"error": "Aquest usuari no té nens associats"}), 404
 
-@app.route('/prototip2/login', methods=['POST'])
+@app.route('/prototip3/login', methods=['POST'])
 def login():
     data = request.json
     username = data.get("username")
