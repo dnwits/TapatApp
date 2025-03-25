@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import dadesServer as dades
-
+import jwt
+import datetime
 #DAOS DE LES CLASSES QUE UTILITZAREM
 class DAOUsers:
     def __init__(self):
@@ -57,9 +58,48 @@ class DAOChild:
 app = Flask(__name__)
 daoChild = DAOChild()
 daoUser = DAOUsers()
+app.config["SECRET_KEY"] = "clau_secreta_super_segura"  # Canvia això per una clau més segura!
+
 # Endpoints
+@app.route('/prototip3/login', methods=['POST'])
+def login():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+    user = daoUser.getUserByUsername(username)
+    # if user and user["password"] == password:
+    #     return jsonify(user), 200
+    # else:
+    #     return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
+    if user and user["password"] == password:
+        token = jwt.encode(
+            {"user_id": user["id"], "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)},
+            app.config["SECRET_KEY"],
+            algorithm="HS256"
+        )
+        return jsonify({"token": token, "username": user["username"], "email": user["email"]}), 200
+    else:
+        return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
+
+from functools import wraps
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.headers.get("Authorization")
+        if not token:
+            return jsonify({"error": "Token d'autenticació requerit"}), 403
+        try:
+            data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return jsonify({"error": "Token expirat"}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({"error": "Token invàlid"}), 401
+        return f(data["user_id"], *args, **kwargs)
+    return decorated
 
 @app.route('/prototip3/getuser/', methods=['GET'])
+@token_required
 def get_user():
     username = request.args.get('username')
     if not username:
@@ -88,17 +128,14 @@ def get_children(username):
     else:
         return jsonify({"error": "Aquest usuari no té nens associats"}), 404
 
-@app.route('/prototip3/login', methods=['POST'])
-def login():
-    data = request.json
-    username = data.get("username")
-    password = data.get("password")
-    user = daoUser.getUserByUsername(username)
-    if user and user["password"] == password:
-        return jsonify(user), 200
-    else:
-        return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
 
+# @app.route('/prototip3/getuser', methods=['GET'])
+# @token_required
+# def get_user(user_id):
+#     user = next((u for u in daoUser.users if u["id"] == user_id), None)
+#     if user:
+#         return jsonify({"id": user["id"], "username": user["username"], "email": user["email"]}), 200
+#     return jsonify({"error": "Usuari no trobat"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True) #192.168.144.157 , host="0.0.0.0", port=10050

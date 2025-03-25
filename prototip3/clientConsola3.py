@@ -25,17 +25,40 @@ class Child:
         return f"[Child] ID: {self.id}, Name: {self.name}, Sleep Avg: {self.sleep_average}, Treatment: {self.treatment}, Time: {self.time}h"
 
 class APIClient:
-    BASE_URL = "http://localhost:5000/prototip2"  # puerto por defecto def en server2.py y para no copiar la url cada vez
-
+    BASE_URL = "http://localhost:5000/prototip3"  # puerto por defecto def en server2.py y para no copiar la url cada vez
+    token = None  # Per guardar el token
+   
+    @staticmethod
+    def login(username, password):
+        try:
+            response = requests.post(f"{APIClient.BASE_URL}/login", json={"username": username, "password": password})
+            if response.status_code == 200:
+                data = response.json()
+                APIClient.token = data["token"]  # Guardem el token per a futures peticions
+                print("Login correcte!")
+                return User(data['id'], data['username'], data['email'])
+            else:
+                print(f"Error: {response.json().get('error', 'Usuari o contrasenya incorrectes')}")
+                return None
+        except Exception as e:
+            print(f"Connection Error: {e}")
+            return None
+        
     @staticmethod
     def get_user(username):
+        if not APIClient.token: #si no hi ha token
+            print("Error: No estàs autenticat. Fes login primer.")
+            return None
         try:
-            response = requests.get(f"{APIClient.BASE_URL}/getuser", params={"username": username})
+            headers = {"Authorization": APIClient.token}
+            response = requests.get(f"{APIClient.BASE_URL}/getuser", headers=headers)
+            #response = requests.get(f"{APIClient.BASE_URL}/getuser", params={"username": username})
             if response.status_code == 200:
                 data = response.json()
                 return User(data['id'], data['username'], data['email'])
             else:
-                print(f"Error: {response.json().get('error', 'Usuari no trobat')}")
+                #print(f"Error: {response.json().get('error', 'Usuari no trobat')}")
+                print(f"Error: {response.json().get('error', 'No es pot obtenir l’usuari')}")
                 return None
         except Exception as e:
             print(f"Connection Error: {e}")
@@ -57,22 +80,7 @@ class APIClient:
         except Exception as e:
             print(f"Connection Error: {e}")
             return []
-        
-    @staticmethod
-    def login(username, password):
-        try:
-            response = requests.post(f"{APIClient.BASE_URL}/login", json={"username": username, "password": password})
-            if response.status_code == 200:
-                data = response.json()
-                print("Login correcte!")
-                return User(data['id'], data['username'], data['email'])
-            else:
-                print(f"Error: {response.json().get('error', 'Usuari o contrasenya incorrectes')}")
-                return None
-        except Exception as e:
-            print(f"Connection Error: {e}")
-            return None
-
+     
 class ConsoleView:
     logged_user = None
 
@@ -92,6 +100,26 @@ class ConsoleView:
     @staticmethod
     def run():
         print("=== Benvingut a TapadApp! ===")
+        # while True:
+        #     ConsoleView.menu()
+        #     option = input("Selecciona una opció: ")
+
+        #     if option == "1":
+        #         username = input("Introdueix el nom d'usuari: ")
+        #         password = input("Introdueix la contrasenya: ")
+        #         APIClient.login(username, password)
+
+        #     elif option == "2":
+        #         user = APIClient.get_user()
+        #         if user:
+        #             print(user)
+
+        #     elif option == "3":
+        #         print("Adeu!")
+        #         break
+
+        #     else:
+        #         print("Opció incorrecta. Torna a intentar-ho.")
         ConsoleView.login()
 
         if ConsoleView.logged_user:
@@ -103,7 +131,7 @@ class ConsoleView:
                     print(ConsoleView.logged_user)
 
                 elif option == "2":
-                    children = APIClient.get_children(ConsoleView.logged_user.username)
+                    children = APIClient.get_user() #APIClient.get_children(ConsoleView.logged_user.username)
                     if children:
                         for child in children:
                             print(child)
