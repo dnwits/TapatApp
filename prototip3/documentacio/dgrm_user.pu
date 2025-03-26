@@ -1,31 +1,40 @@
 @startuml
 left to right direction
 
-actor "Usuari Generic" as generic_user
-actor "Usuari Tutor" as tutor_user
-actor "Usuari Cuidador" as cuidador_user
+actor "Usuari" as generic_user
+actor "Cuidador Principal" as tutor_user
+actor "Cuidador Secundari" as cuidador_user
+actor "Oftalmòleg" as user_oftalmoleg
 tutor_user -|> generic_user
 cuidador_user -|> generic_user
 
 usecase "Login" as UC1
 usecase "Consulta Child" as UC2
-usecase "Add Child" as UC3
+usecase "Add/Remove Child" as UC3
 usecase "Add Taps Child" as UC4
 usecase "Consulta Taps Child" as UC5
+usecase "Add/Remove/Modify Cuidador Secundari" as UC9
+usecase "Add/Modify Treatement" as UC10
+usecase "Veure seguiment tractament" as UC11
 (Consulta User) as UC6
 (Calcular Temps pegat) as UC7
 (Consulta Child) as UC8
 
 
-generic_user --> UC1
-tutor_user --> UC2
-tutor_user --> UC3
-tutor_user --> UC4
-tutor_user --> UC5
-cuidador_user --> UC2
-cuidador_user --> UC4
-cuidador_user --> UC5
+generic_user -- UC1
+tutor_user -- UC2
+tutor_user -- UC3
+tutor_user -- UC4
+tutor_user -- UC5
+tutor_user -- UC9
+tutor_user -- UC10
+tutor_user -- UC11
+cuidador_user -- UC2
+cuidador_user -- UC4
+cuidador_user -- UC5
+user_oftalmoleg -- UC10
+user_oftalmoleg -- UC11
 UC2 <-- UC6 : include
-UC4 <-- UC7 : extends
+UC4 <.. UC7 : extends
 UC5 <-- UC8 : include
 @enduml
