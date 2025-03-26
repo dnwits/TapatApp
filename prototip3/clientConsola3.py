@@ -100,26 +100,7 @@ class ConsoleView:
     @staticmethod
     def run():
         print("=== Benvingut a TapadApp! ===")
-        # while True:
-        #     ConsoleView.menu()
-        #     option = input("Selecciona una opció: ")
 
-        #     if option == "1":
-        #         username = input("Introdueix el nom d'usuari: ")
-        #         password = input("Introdueix la contrasenya: ")
-        #         APIClient.login(username, password)
-
-        #     elif option == "2":
-        #         user = APIClient.get_user()
-        #         if user:
-        #             print(user)
-
-        #     elif option == "3":
-        #         print("Adeu!")
-        #         break
-
-        #     else:
-        #         print("Opció incorrecta. Torna a intentar-ho.")
         ConsoleView.login()
 
         if ConsoleView.logged_user:
@@ -131,7 +112,7 @@ class ConsoleView:
                     print(ConsoleView.logged_user)
 
                 elif option == "2":
-                    children = APIClient.get_user() #APIClient.get_children(ConsoleView.logged_user.username)
+                    children = APIClient.get_children(ConsoleView.logged_user.username) #APIClient.get_user()
                     if children:
                         for child in children:
                             print(child)

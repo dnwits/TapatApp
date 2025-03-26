@@ -94,7 +94,14 @@ def login():
             app.config["SECRET_KEY"],
             algorithm="HS256"
         )
-        return jsonify({"token": token, "username": user["username"], "email": user["email"]}), 200
+        #return jsonify({"token": token, "username": user["username"], "email": user["email"]}), 200
+        return jsonify({
+                "token": token,
+                "id": user["id"],  # Afegim l'ID de l'usuari
+                "username": user["username"],
+                "email": user["email"]
+            }), 200
+
     else:
         return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
 
@@ -130,14 +137,6 @@ def get_children(username):
     else:
         return jsonify({"error": "Aquest usuari no té nens associats"}), 404
 
-
-# @app.route('/prototip3/getuser', methods=['GET'])
-# @token_required
-# def get_user(user_id):
-#     user = next((u for u in daoUser.users if u["id"] == user_id), None)
-#     if user:
-#         return jsonify({"id": user["id"], "username": user["username"], "email": user["email"]}), 200
-#     return jsonify({"error": "Usuari no trobat"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True) #192.168.144.157 , host="0.0.0.0", port=10050
