@@ -14,7 +14,7 @@ usecase "Add Taps Child" as UC4
 usecase "Consulta Taps Child" as UC5
 (Consulta User) as UC6
 (Calcular Temps pegat) as UC7
-(Cconsulta Child) as UC8
+(Consulta Child) as UC8
 
 
 generic_user --> UC1
