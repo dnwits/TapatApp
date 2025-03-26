@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, g
 import dadesServer as dades
 import jwt
 import datetime
+from functools import wraps
 #DAOS DE LES CLASSES QUE UTILITZAREM
 class DAOUsers:
     def __init__(self):
@@ -58,9 +59,25 @@ class DAOChild:
 app = Flask(__name__)
 daoChild = DAOChild()
 daoUser = DAOUsers()
-app.config["SECRET_KEY"] = "clau_secreta_super_segura"  # Canvia això per una clau més segura!
+app.config["SECRET_KEY"] = "1234qwer"  # Canvia això per una clau més segura!
 
 # Endpoints
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.headers.get("Authorization")
+        if not token:
+            return jsonify({"error": "Token d'autenticació requerit"}), 403
+        try:
+            data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
+            g.user_id = data["user_id"]  # Guardem user_id en g (global de Flask)
+        except jwt.ExpiredSignatureError:
+            return jsonify({"error": "Token expirat"}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({"error": "Token invàlid"}), 401
+        return f(*args, **kwargs)  # No passem data["user_id"] > antic > return f(data["user_id"], *args, **kwargs)
+    return decorated
+
 @app.route('/prototip3/login', methods=['POST'])
 def login():
     data = request.json
@@ -73,7 +90,7 @@ def login():
     #     return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
     if user and user["password"] == password:
         token = jwt.encode(
-            {"user_id": user["id"], "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)},
+            {"user_id": user["id"], "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1000)},
             app.config["SECRET_KEY"],
             algorithm="HS256"
         )
@@ -81,22 +98,7 @@ def login():
     else:
         return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
 
-from functools import wraps
-
-def token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = request.headers.get("Authorization")
-        if not token:
-            return jsonify({"error": "Token d'autenticació requerit"}), 403
-        try:
-            data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
-        except jwt.ExpiredSignatureError:
-            return jsonify({"error": "Token expirat"}), 401
-        except jwt.InvalidTokenError:
-            return jsonify({"error": "Token invàlid"}), 401
-        return f(data["user_id"], *args, **kwargs)
-    return decorated
+#from functools import wraps
 
 @app.route('/prototip3/getuser/', methods=['GET'])
 @token_required

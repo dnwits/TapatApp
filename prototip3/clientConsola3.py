@@ -36,7 +36,7 @@ class APIClient:
                 data = response.json()
                 APIClient.token = data["token"]  # Guardem el token per a futures peticions
                 print("Login correcte!")
-                return User(data['id'], data['username'], data['email'])
+                return User(data['id'], data['username'], data['email']) 
             else:
                 print(f"Error: {response.json().get('error', 'Usuari o contrasenya incorrectes')}")
                 return None
