@@ -75,7 +75,7 @@ def token_required(f):
             return jsonify({"error": "Token expirat"}), 401
         except jwt.InvalidTokenError:
             return jsonify({"error": "Token invàlid"}), 401
-        return f(*args, **kwargs)  # No passem data["user_id"] > antic > return f(data["user_id"], *args, **kwargs)
+        return data["user_id"] # No passem data["user_id"] > antic > return f(data["user_id"], *args, **kwargs)
     return decorated
 
 @app.route('/prototip3/login', methods=['POST'])
@@ -105,37 +105,67 @@ def login():
     else:
         return jsonify({"error": "Usuari o contrasenya incorrectes"}), 401
 
-#from functools import wraps
+from functools import wraps
 
 @app.route('/prototip3/getuser/', methods=['GET'])
 @token_required
-def get_user():
-    username = request.args.get('username')
-    if not username:
-        return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"}), 400
-
-    user = daoUser.getUserByUsername(username)
-    if user: #if existeix
-        return jsonify({
-            "id": user["id"],
-            "username": user["username"],
-            "email": user["email"]
-        }), 200
+def get_user(user_id):
+    user = daoUser.getUserById(user_id)
+    if user:
+        return jsonify(user), 200
     else:
-        return jsonify({"error": "Usuari no trobat..."}), 404
+        return jsonify({"error": "Usuari no trobat"}), 404
+    # username = request.args.get('username') 
+    # if not username:
+    #     return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"}), 400
 
-@app.route('/prototip3/getchildren/<username>', methods=['GET'])
-def get_children(username):
-    user = daoUser.getUserByUsername(username)
+    # user = daoUser.getUserByUsername(user_id)
+    # if user: #if existeix
+    #     return jsonify({
+    #         "id": user["id"],
+    #         "username": user["username"],
+    #         "email": user["email"]
+    #     }), 200
+    # else:
+    #     return jsonify({"error": "Usuari no trobat..."}), 404
+
+@app.route('/prototip3/getchildren/', methods=['GET'])
+@token_required
+def get_children(user_id):  # user_id se pasa desde token_required
+    # Obtenemos el usuario por su ID
+    user = daoUser.getUserByUsername(user_id)
     if not user:
-        return jsonify({"error": "Usuari no trobat..."}), 404 
-    #children = daoChild.getChildrenByUserId(user["id"])
-    children = daoChild.getChildrenByUserId(user["id"]) if isinstance(user, dict) else daoChild.getChildrenByUserId(user.id)
-    #children = daoChild.getChildrenByUserId(user.id)
+        return jsonify({"error": "Usuari no trobat"}), 404
+    
+        # Obtenemos los niños asociados al usuario
+    children = daoChild.getChildrenByUserId(user_id)
+    print(f"Usuari {user_id} té aquests nens: {children}")  #Debug
+    
     if children:
-        return jsonify(children), 200  # correcte
+        return jsonify(children), 200
     else:
-        return jsonify({"error": "Aquest usuari no té nens associats"}), 404
+        return jsonify([]), 200
+# @app.route('/prototip3/getchildren/', methods=['GET'])
+# @token_required
+# def get_children(user_id):  # user_id se pasa desde token_required
+#     user = daoUser.getUserByUsername(user_id)
+#     children = daoUser.getChildrenByUserId(user_id) if isinstance(user, dict) else daoChild.getChildrenByUserId(user.id)
+#     print(f"Usuari {user_id} té aquests nens: {children}")  # 🔍 Debug
+#     #return jsonify(children), 200
+#     if children:
+#         return jsonify(children), 200
+#     else:
+#         return jsonify([]), 200 
+
+    # user = daoUser.getUserByUsername(user_id)
+    # if not user:
+    #     return jsonify({"error": "Usuari no trobat..."}), 404 
+    # #children = daoChild.getChildrenByUserId(user["id"])
+    # children = daoChild.getChildrenByUserId(user["id"]) if isinstance(user, dict) else dao    @app.route('/prototip3/getchildren/', methods=['GET'])
+    # if children:
+    #     return jsonify(children), 200  # correcte
+    # else:
+    #     return jsonify({"error": "Aquest usuari no té nens associats"}), 404
 
 
 if __name__ == '__main__':
