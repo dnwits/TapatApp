@@ -35,25 +35,58 @@ class DAOChild:
         allowed_roles = [1, 2, 3]  # comprovació de rols
 
         for relation in self.relations:
-            #if relation["user_id"] == user_id and relation["rol_id"] in allowed_roles:
-            if relation.user_id == user_id and relation.rol_id in allowed_roles:
+            # Si los datos son diccionarios, usa relation["user_id"] en lugar de relation.user_id
+            if relation["user_id"] == user_id and relation["rol_id"] in allowed_roles:
                 for child in self.children:
-                    if child.id == relation.child_id: #["child_id"]
-                        treatment = self.getTreatmentById(child.treatment_id)
+                    # Si los datos son diccionarios, usa child["id"] en lugar de child.id
+                    if child["id"] == relation["child_id"]:
+                        treatment = self.getTreatmentById(child["treatment_id"])
                         result.append({
-                            "id": child.id,
-                            "name": child.child_name,
-                            "sleep_average": child.sleep_average,
-                            "treatment": treatment.name if treatment else "Cap tractament",
-                            "time": child.time
+                            "id": child["id"],
+                            "name": child["child_name"],
+                            "sleep_average": child["sleep_average"],
+                            "treatment": treatment["name"] if treatment else "Cap tractament",
+                            "time": child["time"]
                         })
         return result
 
     def getTreatmentById(self, treatment_id):
         for treatment in self.treatments:
-            if treatment.id == treatment_id:
+            # Si los datos son diccionarios, usa treatment["id"] en lugar de treatment.id
+            if treatment["id"] == treatment_id:
                 return treatment
         return None
+# class DAOChild:
+#     def __init__(self):
+#         self.children = dades.children
+#         self.relations = dades.relation_user_child
+#         self.treatments = dades.treatments
+
+#     def getChildrenByUserId(self, user_id):
+#         result = []
+#         allowed_roles = [1, 2, 3]  # comprovació de rols
+
+#         for relation in self.relations:
+#             #if relation["user_id"] == user_id and relation["rol_id"] in allowed_roles:
+#             if relation.user_id == user_id and relation.rol_id in allowed_roles:
+#                 for child in self.children:
+#                     if child.id == relation.child_id: #["child_id"]
+#                         treatment = self.getTreatmentById(child.treatment_id)
+#                         result.append({
+#                             "id": child.id,
+#                             "name": child.child_name,
+#                             "sleep_average": child.sleep_average,
+#                             "treatment": treatment.name if treatment else "Cap tractament",
+#                             "time": child.time
+#                         })
+#         return result
+
+#     def getTreatmentById(self, treatment_id):
+#         for treatment in self.treatments:
+#             if treatment.id == treatment_id:
+#                 return treatment
+#         return None
+        #jsonify({"error": f"Error inesperat: {str(e)}"}), 500
 
 # variable que llama al metodo DAOUsers de antes
 app = Flask(__name__)
@@ -128,23 +161,41 @@ def get_user(user_id):
     #     }), 200
     # else:
     #     return jsonify({"error": "Usuari no trobat..."}), 404
-
 @app.route('/prototip3/getchildren/', methods=['GET'])
 @token_required
 def get_children(user_id):  # user_id se pasa desde token_required
-    # Obtenemos el usuario por su ID
-    user = daoUser.getUserByUsername(user_id)
-    if not user:
-        return jsonify({"error": "Usuari no trobat"}), 404
-    
+    try:
+        # Obtenemos el usuario por su ID
+        user = daoUser.getUserById(user_id)
+        if not user:
+            return jsonify({"error": "Usuari no trobat"}), 404
+
         # Obtenemos los niños asociados al usuario
-    children = daoChild.getChildrenByUserId(user_id)
-    print(f"Usuari {user_id} té aquests nens: {children}")  #Debug
+        children = daoChild.getChildrenByUserId(user_id)
+        if isinstance(children, list):  # Aseguramos que sea una lista
+            return jsonify(children), 200
+        else:
+            return jsonify({"error": "Error al obtenir els nens"}), 500
+    except Exception as e:
+        # Capturamos cualquier error inesperado y devolvemos un mensaje de error
+        return jsonify({"error": f"Error inesperat: {str(e)}"}), 500
+
+# @app.route('/prototip3/getchildren/', methods=['GET'])
+# @token_required
+# def get_children(user_id):  # user_id se pasa desde token_required
+#     # Obtenemos el usuario por su ID
+#     user = daoUser.getUserByUsername(user_id)
+#     if not user:
+#         return jsonify({"error": "Usuari no trobat"}), 404
     
-    if children:
-        return jsonify(children), 200
-    else:
-        return jsonify([]), 200
+#         # Obtenemos los niños asociados al usuario
+#     children = daoChild.getChildrenByUserId(user_id)
+#     print(f"Usuari {user_id} té aquests nens: {children}")  #Debug
+    
+#     if children:
+#         return jsonify(children), 200
+#     else:
+#         return jsonify([]), 200
 # @app.route('/prototip3/getchildren/', methods=['GET'])
 # @token_required
 # def get_children(user_id):  # user_id se pasa desde token_required
