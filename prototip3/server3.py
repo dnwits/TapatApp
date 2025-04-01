@@ -33,27 +33,25 @@ class DAOChild:
     def getChildrenByUserId(self, user_id):
         result = []
         allowed_roles = [1, 2, 3]  # comprovació de rols
+        #seen_children = set()  # Para evitar duplicados
 
         for relation in self.relations:
-            # Si los datos son diccionarios, usa relation["user_id"] en lugar de relation.user_id
-            if relation["user_id"] == user_id and relation["rol_id"] in allowed_roles:
+            if relation.user_id == user_id and relation.rol_id in allowed_roles:
                 for child in self.children:
-                    # Si los datos son diccionarios, usa child["id"] en lugar de child.id
-                    if child["id"] == relation["child_id"]:
-                        treatment = self.getTreatmentById(child["treatment_id"])
+                    if child.id == relation.child_id:
+                        treatment = self.getTreatmentById(child.treatment_id)
                         result.append({
-                            "id": child["id"],
-                            "name": child["child_name"],
-                            "sleep_average": child["sleep_average"],
-                            "treatment": treatment["name"] if treatment else "Cap tractament",
-                            "time": child["time"]
+                            "id": child.id,
+                            "name": child.child_name,
+                            "sleep_average": child.sleep_average,
+                            "treatment": treatment.name if treatment else "Cap tractament",
+                            "time": child.time
                         })
         return result
 
     def getTreatmentById(self, treatment_id):
         for treatment in self.treatments:
-            # Si los datos son diccionarios, usa treatment["id"] en lugar de treatment.id
-            if treatment["id"] == treatment_id:
+            if treatment.id == treatment_id:
                 return treatment
         return None
 # class DAOChild:
@@ -89,11 +87,12 @@ class DAOChild:
         #jsonify({"error": f"Error inesperat: {str(e)}"}), 500
 
 # variable que llama al metodo DAOUsers de antes
+
 app = Flask(__name__)
 daoChild = DAOChild()
 daoUser = DAOUsers()
 app.config["SECRET_KEY"] = "1234qwer"  # Canvia això per una clau més segura!
-
+#print(daoChild.getChildrenByUserId(1))  # Debug
 # Endpoints
 def token_required(f):
     @wraps(f)
@@ -105,13 +104,14 @@ def token_required(f):
             data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
             g.user_id = data["user_id"]  # Guardem user_id en g (global de Flask)
         except jwt.ExpiredSignatureError:
-            return jsonify({"error": "Token expirat"}), 401
+            return jsonify({"error": "Token caducat"}), 403
         except jwt.InvalidTokenError:
-            return jsonify({"error": "Token invàlid"}), 401
-        return data["user_id"] # No passem data["user_id"] > antic > return f(data["user_id"], *args, **kwargs)
+            return jsonify({"error": "Token invàlid"}), 403
+        return f(*args, **kwargs)  # Continua amb la funció decorada
     return decorated
 
 @app.route('/prototip3/login', methods=['POST'])
+#@token_required
 def login():
     data = request.json
     username = data.get("username")
@@ -143,11 +143,22 @@ from functools import wraps
 @app.route('/prototip3/getuser/', methods=['GET'])
 @token_required
 def get_user(user_id):
-    user = daoUser.getUserById(user_id)
-    if user:
-        return jsonify(user), 200
-    else:
-        return jsonify({"error": "Usuari no trobat"}), 404
+    try:
+        user_id = g.user_id  # Obtenemos el user_id del decorador
+        user = daoUser.getUserByUsername(user_id)  # Cambia a getUserByUsername si es necesario
+        if user:
+            return jsonify(user), 200
+        else:
+            return jsonify({"error": "Usuari no trobat"}), 404
+    except Exception as e:
+        print(f"Error: {str(e)}")  # Debug
+        return jsonify({"error": f"Error inesperat: {str(e)}"}), 500
+    # user = daoUser.getUserById(user_id)
+    # if user:
+    #     return jsonify(user), 200
+    # else:
+    #     return jsonify({"error": "Usuari no trobat"}), 404
+    
     # username = request.args.get('username') 
     # if not username:
     #     return jsonify({"error": "No s'ha proporcionat cap nom d'usuari"}), 400
@@ -161,24 +172,38 @@ def get_user(user_id):
     #     }), 200
     # else:
     #     return jsonify({"error": "Usuari no trobat..."}), 404
+
 @app.route('/prototip3/getchildren/', methods=['GET'])
 @token_required
-def get_children(user_id):  # user_id se pasa desde token_required
+def get_children():
     try:
-        # Obtenemos el usuario por su ID
-        user = daoUser.getUserById(user_id)
-        if not user:
-            return jsonify({"error": "Usuari no trobat"}), 404
-
-        # Obtenemos los niños asociados al usuario
+        user_id = g.user_id  # Obtenemos el user_id del decorador
+        #print(f"User ID: {user_id}")  # Debug
         children = daoChild.getChildrenByUserId(user_id)
-        if isinstance(children, list):  # Aseguramos que sea una lista
-            return jsonify(children), 200
-        else:
-            return jsonify({"error": "Error al obtenir els nens"}), 500
+        #print(f"Children: {children}")  # Debug
+        return jsonify(children), 200
     except Exception as e:
+        #print(f"Error: {str(e)}")  # Debug
         # Capturamos cualquier error inesperado y devolvemos un mensaje de error
         return jsonify({"error": f"Error inesperat: {str(e)}"}), 500
+# @app.route('/prototip3/getchildren/', methods=['GET'])
+# @token_required
+# def get_children(user_id):  # user_id se pasa desde token_required
+#     try:
+#         # Obtenemos el usuario por su ID
+#         user = daoUser.getUserById(user_id)
+#         if not user:
+#             return jsonify({"error": "Usuari no trobat"}), 404
+
+#         # Obtenemos los niños asociados al usuario
+#         children = daoChild.getChildrenByUserId(user_id)
+#         if isinstance(children, list):  # Aseguramos que sea una lista
+#             return jsonify(children), 200
+#         else:
+#             return jsonify({"error": "Error al obtenir els nens"}), 500
+#     except Exception as e:
+#         # Capturamos cualquier error inesperado y devolvemos un mensaje de error
+#         return jsonify({"error": f"Error inesperat: {str(e)}"}), 500
 
 # @app.route('/prototip3/getchildren/', methods=['GET'])
 # @token_required

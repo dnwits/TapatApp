@@ -82,10 +82,14 @@ class APIClient:
             response = requests.get(f"{APIClient.BASE_URL}/getuser/", headers=headers)
             if response.status_code == 200:
                 data = response.json()
-                return User(data["username"], data["email"])
+                return User(data["id"], data["username"], data["email"])
+                #return User(data["username"], data["email"])
             else:
                 print(f"Error: {response.json().get('error', 'No es pot obtenir l’usuari')}")
                 return None
+        except json.JSONDecodeError:
+            print("Error: Resposta del servidor no vàlida.")
+            return None
         except Exception as e:
             print(f"Connection Error: {e}")
             return None
@@ -165,7 +169,6 @@ class ConsoleView:
 
     @staticmethod
     def run():
-        
         print("=== Benvingut a TapadApp! ===")
          # Intentem carregar l'usuari automàticament
         token = APIClient.load_token()

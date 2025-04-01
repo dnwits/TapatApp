@@ -15,17 +15,36 @@ users = [
 
 # Crear les classes Child, Tap, Role, Status i Treatment
 #CLASSE CHILD------------------------------------------------------------------------------------------
+# class Child:
+#     def __init__(self, id, child_name, sleep_average, treatment_id, time):
+#         self.id=id
+#         self.child_name=child_name
+#         self.sleep_average=sleep_average
+#         self.treatment_id=treatment_id
+#         self.time=time
+
+#     def __str__(self):
+#         return self.child_name + ":" + self.sleep_average + ":" + self.treatment_id+ ":" +self.treatment_id+":"+self.time
 class Child:
     def __init__(self, id, child_name, sleep_average, treatment_id, time):
-        self.id=id
-        self.child_name=child_name
-        self.sleep_average=sleep_average
-        self.treatment_id=treatment_id
-        self.time=time
+        self.id = id
+        self.child_name = child_name
+        self.sleep_average = sleep_average
+        self.treatment_id = treatment_id
+        self.time = time
 
     def __str__(self):
-        return self.child_name + ":" + self.sleep_average + ":" + self.treatment_id+ ":" +self.treatment_id+":"+self.time
-    
+        return f"{self.child_name}:{self.sleep_average}:{self.treatment_id}:{self.time}"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "child_name": self.child_name,
+            "sleep_average": self.sleep_average,
+            "treatment_id": self.treatment_id,
+            "time": self.time
+        }
+      
 children = [
     Child(id=1, child_name="Carol Child", sleep_average=8, treatment_id=1, time=6),
     Child(id=2, child_name="Jaco Child", sleep_average=10, treatment_id=2, time=6)
@@ -49,6 +68,16 @@ taps = [
 ]
 
 #CLASSE RELACIONS--------------------------------------------------------------------------------------
+# class RelationUserChild:
+#     def __init__(self, user_id, child_id, rol_id):
+#         self.user_id = user_id
+#         self.child_id = child_id
+#         self.rol_id = rol_id
+
+#     def __str__(self):
+#         return self.user_id + ":" + self.child_id + ":" + self.rol_id
+#         #f"User: {self.user_id}, Child: {self.child_id}, Rol: {self.rol_id}"
+
 class RelationUserChild:
     def __init__(self, user_id, child_id, rol_id):
         self.user_id = user_id
@@ -56,8 +85,14 @@ class RelationUserChild:
         self.rol_id = rol_id
 
     def __str__(self):
-        return self.user_id + ":" + self.child_id + ":" + self.rol_id
-        #f"User: {self.user_id}, Child: {self.child_id}, Rol: {self.rol_id}"
+        return f"{self.user_id}:{self.child_id}:{self.rol_id}"
+
+    def to_dict(self):
+        return {
+            "user_id": self.user_id,
+            "child_id": self.child_id,
+            "rol_id": self.rol_id
+        }
 
 relation_user_child = [
     RelationUserChild(user_id=1, child_id=1, rol_id=1),
@@ -96,13 +131,26 @@ statuses = [
     Status(id=4, name="no_eyepatch")
 ]
 #CLASSE TREATEMENT-------------------------------------------------------------------------------------
+# class Treatment:
+#     def __init__(self, id, name):
+#         self.id=id
+#         self.name=name
+
+#     def __str__(self):
+#         return self.id + ":" + self.name
 class Treatment:
     def __init__(self, id, name):
-        self.id=id
-        self.name=name
+        self.id = id
+        self.name = name
 
     def __str__(self):
-        return self.id + ":" + self.name
+        return f"{self.id}:{self.name}"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name
+        }
     
 treatments = [
     Treatment(id=1, name='Hour'),
