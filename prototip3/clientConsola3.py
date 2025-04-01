@@ -57,7 +57,7 @@ class APIClient:
             response = requests.post(f"{APIClient.BASE_URL}/login", json={"username": username, "password": password})
             if response.status_code == 200:
                 data = response.json()
-                #APIClient.token = data["token"]  # Guardem el token per a futures peticions
+                APIClient.token = data["token"]  # Guardem el token per a futures peticions
                 token = data["token"]
                 APIClient.save_token(token)  # Guardar el token per futurs usos
                 print("Login correcte!")
@@ -70,8 +70,9 @@ class APIClient:
             print(f"Connection Error: {e}")
             return None
         
+
     @staticmethod
-    def get_user(): #Obtén la informació de l'usuari actual a partir del token.
+    def get_user():
         token = APIClient.load_token()
         if not token:
             print("Error: No estàs autenticat. Fes login primer.")
@@ -83,7 +84,6 @@ class APIClient:
             if response.status_code == 200:
                 data = response.json()
                 return User(data["id"], data["username"], data["email"])
-                #return User(data["username"], data["email"])
             else:
                 print(f"Error: {response.json().get('error', 'No es pot obtenir l’usuari')}")
                 return None
@@ -102,7 +102,7 @@ class APIClient:
             return []
 
         headers = {"Authorization": token}
-        print(f"Token enviat: {token}") 
+        #print(f"Token enviat: {token}") #debug
         try:
             response = requests.get(f"{APIClient.BASE_URL}/getchildren/", headers=headers)
             if response.status_code == 200:
@@ -114,41 +114,7 @@ class APIClient:
         except Exception as e:
             print(f"Connection Error: {e}")
             return []
-    # @staticmethod
-    # def get_children():
-    #     token = APIClient.load_token()
-    #     if not token:
-    #         print("Error: No hi ha cap sessió iniciada.")
-    #         return []
 
-    #     headers = {"Authorization": token}
-    #     print(f"Token enviat: {token}") 
-    #     try:
-    #         response = requests.get(f"{APIClient.BASE_URL}/getchildren/", headers=headers)
-    #         if response.status_code == 200:
-    #             print(f"Resposta del servidor: {response.text}")  # 🔍 Debug
-    #             response.raise_for_status()  # Esto lanzará error si el código es 4xx o 5xx
-    #             #return response.json()
-    #         else:
-    #             print(f"Error: {response.json().get('error', 'No children found')}")
-    #             return []
-    #     except Exception as e:
-    #         print(f"Connection Error: {e}")
-    #         return []
-        # try:
-        #     response = requests.get(f"{APIClient.BASE_URL}/getchildren/{username}")
-        #     # if response.status_code == 200:
-        #     #     children = response.json()
-        #     #     return [Child(c["id"], c["name"], c["sleep_average"], c["treatment_id"], c["time"]) for c in children]
-        #     if response.status_code == 200:
-        #         children_data = response.json()
-        #         return [Child(c["id"], c["name"], c["sleep_average"], c["treatment"], c["time"]) for c in children_data]
-        #     else:
-        #         print(f"Error: {response.json().get('error', 'No children found')}")
-        #         return []
-        # except Exception as e:
-        #     print(f"Connection Error: {e}")
-        #     return []
      
 class ConsoleView:
     logged_user = None
