@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import dadesServer as dades
+import prototip2 as dades
 
 #DAOS DE LES CLASSES QUE UTILITZAREM
 class DAOUsers:

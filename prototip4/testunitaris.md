@@ -6,7 +6,11 @@ Són proves que verifiquen que un fragment de codi funciona correctament. Es fan
 - Són fàcils d'automatitzar, Són econòmiques.
 - Es poden provar diferents unitats de manera simultània.
 2- (testunitaris.md) Fes una recerca de llibreries de test amb Python.  Com funciona específicament la llibreria ***unittest*** de Python?
-
+Llibreries de test amb Python:
+- [Pytest](https://docs.pytest.org/en/7.1.x/)
+- Hypothesis
+- Schemathesis
+- Playwright
 3-  (prototip3/testsuma.py) Exercici exemple test.
 Creació i execució d’un test senzill  amb Python per exemple testejar una funció de suma. Genera un fitxer python que testeji aquesta funció.
 ```
