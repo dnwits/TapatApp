@@ -12,7 +12,7 @@ Llibreries de test amb Python:
 - [Hypothesis](https://hypothesis.readthedocs.io/en/latest/index.html)
 - [Schemathesis](https://schemathesis.readthedocs.io/en/stable/)
 - [Playwright](https://playwright.dev/python/)
-- [Unittest](https://docs.python.org/3/library/unittest.html)
+- [Unittest](https://docs.python.org/3/library/unittest.html) : El mòdul unittest és un marc de proves integrat a Python, disponible com a part de la biblioteca estàndard. L'objectiu principal del mòdul unittest és facilitar la creació de casos de prova i conjunts de proves per verificar el comportament i la correcció d'unitats de codi individuals.
 
     - Avantatges de Unittest
 
