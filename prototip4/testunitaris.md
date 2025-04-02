@@ -26,7 +26,7 @@ Llibreries de test amb Python:
         - Funcionalitats limitades per complementar el testing com saber el coverage de la teva aplicació
         - Sense extensions o sistema de plugins per completar la seva funcionalitat com té pytest.
 
-3-  (prototip3/testsuma.py) Exercici exemple test.
+3-  ([prototip4/testsuma.py](testsuma.py)) Exercici exemple test.
 Creació i execució d’un **test senzill amb Python** per exemple testejar una funció de suma. Genera un fitxer python que testeji aquesta funció.
 ```
 def suma(a, b):
@@ -34,7 +34,7 @@ def suma(a, b):
     return a + b
 ```
 
-4- (prototip3/testfuncions.py) Exercici exemple varies  funcions.
+4- ([prototip4/testfuncions.py](testfuncions.py)) Exercici exemple varies  funcions.
 **Testeja més funcions**, afegeix una resta i una divisió (que retorni un error quan la divisió és per 0)  
 
 ```
@@ -50,5 +50,6 @@ def divideix(a, b):
 ```
 
 5-  (testunitaris.md) Fes una Llista de les assertions més importants en unittest i explica per a que  serveixen
+
 
 6-  (prototip3/testBackend.py)  Fes els tests Unitaris dels teus DAO i webservice del prototip 2 que tens a la carpeta prototip 3
