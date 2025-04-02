@@ -100,7 +100,11 @@ def login():
                 "token": token,
                 "id": user["id"],  # Afegim l'ID de l'usuari
                 "username": user["username"],
-                "email": user["email"]
+                "email": user["email"],
+                "id_rol": user["id_rol"],
+                "msg": "Usuari correcte",
+                "coderesponse": "1"
+
             }), 200
 
     else:
