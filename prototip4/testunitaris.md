@@ -99,4 +99,4 @@ def divideix(a, b):
     - Exemple: self.assertNotIsInstance(resultat, str)
 
 
-6-  (prototip3/testBackend.py)  Fes els tests Unitaris dels teus DAO i webservice del prototip 2 que tens a la carpeta prototip 3
+6-  ([prototip4/testBackend.py](testBackend.py))  Fes els tests Unitaris dels teus DAO i webservice del prototip 2 que tens a la carpeta prototip 3
