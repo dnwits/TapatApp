@@ -9,9 +9,22 @@ Són proves que verifiquen que un fragment de codi funciona correctament. Es fan
 2- (testunitaris.md) Fes una recerca de llibreries de test amb Python.  Com funciona específicament la llibreria ***unittest*** de Python?
 Llibreries de test amb Python:
 - [Pytest](https://docs.pytest.org/en/7.1.x/)
-- [Hypothesis](https://hypothesis.readthedocs.io/en/latest/index.html))
-- Schemathesis
-- Playwright
+- [Hypothesis](https://hypothesis.readthedocs.io/en/latest/index.html)
+- [Schemathesis](https://schemathesis.readthedocs.io/en/stable/)
+- [Playwright](https://playwright.dev/python/)
+- [Unittest](https://docs.python.org/3/library/unittest.html)
+
+    - Avantatges de Unittest
+
+        - Ve inclòs amb el llenguatge i és un dels més usats en els projectes Python.
+        - Sol tenir compatibilitat amb la resta de llibreries com Pytest, per la qual cosa es recomana començar-hi.
+        - Té inclòs un servei de discovery que permet trobar i executar els tests automàticament.
+        - Molt senzill dutilitzar, té alguns mètodes que controlen el cicle de vida dels teus tests.
+
+    - Desavantatges
+
+        - Funcionalitats limitades per complementar el testing com saber el coverage de la teva aplicació
+        - Sense extensions o sistema de plugins per completar la seva funcionalitat com té pytest.
 
 3-  (prototip3/testsuma.py) Exercici exemple test.
 Creació i execució d’un test senzill  amb Python per exemple testejar una funció de suma. Genera un fitxer python que testeji aquesta funció.
