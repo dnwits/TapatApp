@@ -50,18 +50,53 @@ def divideix(a, b):
 ```
 
 5-  (testunitaris.md) Fes una Llista de les assertions més importants en unittest i explica per a que  serveixen.
-- assertEqual(a, b)
-- assertNotEqual(a, b)
-- assertTrue(x)
-- assertFalse(x)
-- assertIs(a, b)
-- assertIsNot(a, b)
-- assertIsNone(x)
-- assertIsNotNone(x)
-- assertIn(a, b)
-- assertNotIn(a, b)
-- assertIsInstance(a, b)
-- assertNotIsInstance(a, b)
+**Assertions bàsics de comparació:**
+- assertEqual(a, b) :
+    - Verifica que a == b
+    - Exemple: self.assertEqual(resultat_esperat, resultat_real)
+- assertNotEqual(a, b):
+    - Verifica que a != b
+    - Útil per assegurar que dos valors no són iguals
+
+**Assertions de veritat/falsedat:**
+- assertTrue(x):
+    - Verifica que x és True
+    - Equivalent a self.assertTrue(bool(x))
+- assertFalse(x):
+    - Verifica que x és False
+    - Equivalent a self.assertFalse(bool(x))
+
+**Assertions d'identitat (no igualtat):**
+- assertIs(a, b):
+    - Verifica que a is b (mateix objecte en memòria)
+    - Exemple: self.assertIs(instancia, Singleton.instancia)
+- assertIsNot(a, b):
+    - Verifica que a is not b
+    - Comprova que no són el mateix objecte
+
+**Assertions de valors None:**
+- assertIsNone(x):
+    - Verifica que x is None
+    - Millor que assertEqual(x, None)
+- assertIsNotNone(x):
+    - Verifica que x is not None
+    - Millor que assertNotEqual(x, None)
+
+**Assertions de pertinença:**
+- assertIn(a, b):
+    - Verifica que a in b
+    - Exemple: self.assertIn(element, llista)
+- assertNotIn(a, b):
+    - Verifica que a not in b
+    - Exemple: self.assertNotIn(element_prohibit, llista)
+
+**Assertions de tipus:**
+- assertIsInstance(a, b):
+    - Verifica que isinstance(a, b)
+    - Exemple: self.assertIsInstance(resultat, int)
+- assertNotIsInstance(a, b):
+    - Verifica que not isinstance(a, b)
+    - Exemple: self.assertNotIsInstance(resultat, str)
 
 
 6-  (prototip3/testBackend.py)  Fes els tests Unitaris dels teus DAO i webservice del prototip 2 que tens a la carpeta prototip 3
