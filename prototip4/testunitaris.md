@@ -49,7 +49,19 @@ def divideix(a, b):
     return a / b
 ```
 
-5-  (testunitaris.md) Fes una Llista de les assertions més importants en unittest i explica per a que  serveixen
+5-  (testunitaris.md) Fes una Llista de les assertions més importants en unittest i explica per a que  serveixen.
+- assertEqual(a, b)
+- assertNotEqual(a, b)
+- assertTrue(x)
+- assertFalse(x)
+- assertIs(a, b)
+- assertIsNot(a, b)
+- assertIsNone(x)
+- assertIsNotNone(x)
+- assertIn(a, b)
+- assertNotIn(a, b)
+- assertIsInstance(a, b)
+- assertNotIsInstance(a, b)
 
 
 6-  (prototip3/testBackend.py)  Fes els tests Unitaris dels teus DAO i webservice del prototip 2 que tens a la carpeta prototip 3
