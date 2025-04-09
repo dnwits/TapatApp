@@ -6,6 +6,7 @@ class DAOUser:
             user="root",
             password="root",
             database="tapatapp")  # Configuració de la base de dades
+        self.cursor = self.db_config.cursor(dictionary=True)
 
     def connect(self):
         try:
@@ -19,7 +20,7 @@ class DAOUser:
         if connection:
             connection.close()
 
-    def get_user_by_id(self, user_id):
+    '''def get_user_by_id(self, user_id):
         connection = self.connect()
         if not connection:
             return None
@@ -28,4 +29,15 @@ class DAOUser:
         cursor.execute(query, (user_id,))
         user = cursor.fetchone()
         self.close_connection(connection)
+        return user'''
+    def validate_user(self, username, password):
+        connection = self.connect()
+        if not connection:
+            return None
+        cursor = connection.cursor(dictionary=True)
+        query = "SELECT * FROM users WHERE username = %s AND password = %s"
+        cursor.execute(query, (username, password))
+        user = cursor.fetchone()
+        self.close_connection(connection)
         return user
+    validate_user("mare", "12345")
