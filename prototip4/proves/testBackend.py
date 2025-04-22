@@ -1,5 +1,5 @@
 import unittest
-import test_server2
+import prototip4.proves.test_server2 as test_server2
 
 class TestFuncions(unittest.TestCase):
     def test_login(self):
