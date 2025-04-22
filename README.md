@@ -36,4 +36,4 @@ L'objectiu de TapatApp és proporcionar a totes les famílies afectades per cata
 [Objectius prototip 2](/prototip2/documentacio/descripcio_prototip2.md)
 
 ## Test Unitaris
-[Test unitaris](/prototip4/testunitaris.md)
+[Test unitaris](/prototip4/proves/testunitaris.md)
