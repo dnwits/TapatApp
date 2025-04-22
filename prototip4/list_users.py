@@ -20,6 +20,7 @@ def list_users():
             connection.close()
 if __name__ == '__main__':
     list_users()
+    
     # def __init__(self):
     #     self.db_config = mysql.connector.connect (
     #         host="localhost",
